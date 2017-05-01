@@ -1,0 +1,8 @@
+17:34:29.639 TRACE com.jxggdxw.www.main 27 doGet - entry
+17:34:29.645 WARN  com.jxggdxw.www.main 28 doGet - main
+17:34:29.645 ERROR com.jxggdxw.www.main 29 doGet - HttpServlet
+17:34:29.646 TRACE com.jxggdxw.www.main 30 doGet - exit
+17:34:52.675 TRACE com.jxggdxw.www.main 27 doGet - entry
+17:34:52.676 WARN  com.jxggdxw.www.main 28 doGet - main
+17:34:52.676 ERROR com.jxggdxw.www.main 29 doGet - HttpServlet
+17:34:52.676 TRACE com.jxggdxw.www.main 30 doGet - exit
