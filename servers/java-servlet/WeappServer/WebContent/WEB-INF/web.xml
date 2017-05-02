@@ -11,15 +11,15 @@
   </description>  
   <!--定义控制器 -->  
 
-<servlet>  
+<!-- <servlet>  
 <servlet-name>main</servlet-name>  
 <servlet-class>com.jxggdxw.www.main</servlet-class>  
 </servlet> 
-<!-- 拦截/helloworld的请求 -->  
+ 
 <servlet-mapping>  
 <servlet-name>main</servlet-name>  
 <url-pattern>/main</url-pattern>  
-</servlet-mapping> 
+</servlet-mapping>  -->
 
  
 <context-param>

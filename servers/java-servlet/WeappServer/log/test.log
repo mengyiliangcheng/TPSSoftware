@@ -1,8 +1,5 @@
-17:34:29.639 TRACE com.jxggdxw.www.main 27 doGet - entry
-17:34:29.645 WARN  com.jxggdxw.www.main 28 doGet - main
-17:34:29.645 ERROR com.jxggdxw.www.main 29 doGet - HttpServlet
-17:34:29.646 TRACE com.jxggdxw.www.main 30 doGet - exit
-17:34:52.675 TRACE com.jxggdxw.www.main 27 doGet - entry
-17:34:52.676 WARN  com.jxggdxw.www.main 28 doGet - main
-17:34:52.676 ERROR com.jxggdxw.www.main 29 doGet - HttpServlet
-17:34:52.676 TRACE com.jxggdxw.www.main 30 doGet - exit
+08:39:13.536 TRACE com.jxggdxw.www.main 31 doGet - doGet
+
+08:39:13.542 TRACE com.jxggdxw.www.main 49 doGet - buf length====-1
+08:39:13.543 TRACE com.jxggdxw.www.main 50 doGet - buf====[B@5a16b07a
+08:39:13.543 TRACE com.jxggdxw.www.main 60 doGet - end

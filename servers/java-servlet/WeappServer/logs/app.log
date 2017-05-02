@@ -1,8 +1,19 @@
-2017-05-01 at 17:34:29 CST TRACE com.jxggdxw.www.main 27 doGet - entry
-2017-05-01 at 17:34:29 CST WARN  com.jxggdxw.www.main 28 doGet - main
-2017-05-01 at 17:34:29 CST ERROR com.jxggdxw.www.main 29 doGet - HttpServlet
-2017-05-01 at 17:34:29 CST TRACE com.jxggdxw.www.main 30 doGet - exit
-2017-05-01 at 17:34:52 CST TRACE com.jxggdxw.www.main 27 doGet - entry
-2017-05-01 at 17:34:52 CST WARN  com.jxggdxw.www.main 28 doGet - main
-2017-05-01 at 17:34:52 CST ERROR com.jxggdxw.www.main 29 doGet - HttpServlet
-2017-05-01 at 17:34:52 CST TRACE com.jxggdxw.www.main 30 doGet - exit
+2017-05-01 at 18:11:16 CST TRACE com.jxggdxw.www.main 27 doGet - entry
+2017-05-01 at 18:11:16 CST WARN  com.jxggdxw.www.main 28 doGet - main
+2017-05-01 at 18:11:16 CST ERROR com.jxggdxw.www.main 29 doGet - HttpServlet
+2017-05-01 at 18:11:16 CST TRACE com.jxggdxw.www.main 30 doGet - exit
+2017-05-01 at 21:51:21 CST TRACE com.jxggdxw.www.main 31 doGet - doGet
+2017-05-01 at 21:57:14 CST TRACE com.jxggdxw.www.main 31 doGet - doGet
+2017-05-01 at 21:57:14 CST TRACE com.jxggdxw.www.main 49 doGet - buf====[B@6bc9cd86
+2017-05-01 at 21:57:50 CST TRACE com.jxggdxw.www.main 31 doGet - doGet
+2017-05-01 at 21:57:50 CST TRACE com.jxggdxw.www.main 49 doGet - buf length====-1
+2017-05-01 at 21:57:50 CST TRACE com.jxggdxw.www.main 50 doGet - buf====[B@5fcd36cb
+2017-05-01 at 22:12:51 CST TRACE com.jxggdxw.www.main 31 doGet - doGet
+
+2017-05-01 at 22:12:51 CST TRACE com.jxggdxw.www.main 49 doGet - buf length====-1
+2017-05-01 at 22:12:51 CST TRACE com.jxggdxw.www.main 50 doGet - buf====[B@5ff51033
+2017-05-02 at 08:39:13 CST TRACE com.jxggdxw.www.main 31 doGet - doGet
+
+2017-05-02 at 08:39:13 CST TRACE com.jxggdxw.www.main 49 doGet - buf length====-1
+2017-05-02 at 08:39:13 CST TRACE com.jxggdxw.www.main 50 doGet - buf====[B@5a16b07a
+2017-05-02 at 08:39:13 CST TRACE com.jxggdxw.www.main 60 doGet - end
