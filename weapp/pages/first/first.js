@@ -13,13 +13,12 @@ Page({
  
   })
  
-
 setTimeout(function(){
   wx.hideLoading()
 },1000)
 
-  wx.navigateTo({
-      url: '../tb/tb',
+  wx.navigateTo({       //跳转到tb页面
+      url: '../second/second',
     })
   },
   onLoad: function () {

@@ -1,10 +1,8 @@
 {
   "pages":[
-    "pages/index/index",
-    "pages/logs/logs",
-    "pages/tb/tb",
-    "pages/third/third",
-    "pages/four/four"
+    "pages/first/first",
+    "pages/second/second",
+    "pages/third/third"
   ],
   "window":{
     "backgroundTextStyle":"light",

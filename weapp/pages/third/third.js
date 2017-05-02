@@ -33,19 +33,19 @@ addpicture:function(){
     // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
       console.log(res.tempFilePaths[0])
       var filname='picture'
-      var filepath= res.tempFilePaths[0]
+      var filepath= res.tempFilePaths[0] 
        //console.log(tempFilePaths)
       console.log(filname)
       //uploadfn(filepath,filname)
       wx.uploadFile({
-        url:                              "https://32906079.jxggdxw.com:8443/WeappServer/main",
-        filePath: filepath,
-        header: {
+        url:                              "https://32906079.jxggdxw.com:8443/WeappServer/main",  //开发者服务器URL
+        filePath: filepath,  //上传文件的临时路径
+        header: {           //http头
            'content-type':'application/json' 
               },
-        name: newgoodsname,
+        name: newgoodsname,    //上传文件所对应的key
        
-        formData: {
+        formData: {           //除了上传文件以外，其他的上传信息
            op: 'upload',
            goodsname:newgoodsname
           },
@@ -54,7 +54,7 @@ addpicture:function(){
            var data = uploadRes.data
 
            console.log(goodsname)
-            console.log(data)
+           console.log(data)
            console.log('uploadRes', uploadRes)
                     //do something
             wx.showLoading({

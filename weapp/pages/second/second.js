@@ -12,21 +12,17 @@ Page({
   title: '加载中',
   })
 
-setTimeout(function(){
-  wx.hideLoading()
-},1000)
-wx.previewImage({
+  setTimeout(function(){
+    wx.hideLoading()
+  },1000)
+  wx.previewImage({
   //current: 'http://123.206.126.162/picture/1.png', // 当前显示图片的http链接
-  urls: ['http://32906079.jxggdxw.com/picture/4.png','http://32906079.jxggdxw.com/picture/5.png',
+  urls: ['http://32906079.jxggdxw.com/picture/4.png',       'http://32906079.jxggdxw.com/picture/5.png',
   'http://32906079.jxggdxw.com/picture/6.png',
   'http://32906079.jxggdxw.com/picture/7.png',
   'http://32906079.jxggdxw.com/picture/8.png',
   'http://32906079.jxggdxw.com/picture/9.png'] // 需要预览的图片http链接列表
-})
-
-/*wx.navigateTo({
-      url: '../third/third'
-    })*/
+}) 
   },
    photo1: function() {
      wx.showLoading({
@@ -38,16 +34,12 @@ setTimeout(function(){
 },1000)
 wx.previewImage({
   //current: 'http://123.206.126.162/picture/1.png', // 当前显示图片的http链接
-  urls: ['http://32906079.jxggdxw.com/picture/4.png','http://32906079.jxggdxw.com/picture/5.png',
+  urls: ['http://32906079.jxggdxw.com/picture/4.png',      'http://32906079.jxggdxw.com/picture/5.png',
   'http://32906079.jxggdxw.com/picture/6.png',
   'http://32906079.jxggdxw.com/picture/7.png',
   'http://32906079.jxggdxw.com/picture/8.png',
   'http://32906079.jxggdxw.com/picture/9.png'] // 需要预览的图片http链接列表
 })
-
-/*wx.navigateTo({
-      url: '../four/four'
-    })*/
    },
 photo2: function() {
      wx.showLoading({
