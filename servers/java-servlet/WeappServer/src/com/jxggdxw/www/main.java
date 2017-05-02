@@ -4,7 +4,9 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;  
+import java.io.PrintWriter;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletInputStream;
 import javax.servlet.annotation.WebServlet;
@@ -28,7 +30,45 @@ public class main extends HttpServlet {
             throws IOException, ServletException { 
     	/*test_logger log = new test_logger();*/
     	
-    	logger.trace("doGet\r\n");
+    	logger.trace("doGet");
+    	
+    	logger.trace("client IP :"+request.getRemoteHost());
+    	logger.trace("Host IP :" + request.getLocalAddr());
+    	logger.trace("getContentType :" + request.getContentType());
+    	logger.trace("getContentLength :" + request.getContentLength());
+    	logger.trace("getContextPath :" + request.getContextPath());
+    	
+    	// Returns an Enumeration of String objects containing the names of the parameters contained in this request.   
+        Enumeration paramNames = request.getParameterNames();  
+        // Tests if this enumeration contains more elements.   
+        while(paramNames.hasMoreElements()) {  
+            // Returns the next element of this enumeration if this enumeration object has at least one more element to provide.   
+            String paraName = (String)paramNames.nextElement();  
+            logger.trace("paraName: "+paraName);
+            //out.println("<tr><td>" + paraName + "/n<td>");  
+            // Returns an array of String objects containing all of the values the given request parameter has, or null if the parameter does not exist.   
+            // 注意参数paraName（变量）不能加双引号，否则就是找参数名叫paraName的对应值了。  
+            String[] paramValues = request.getParameterValues(paraName);  
+            // 这个参数只有一个值  
+            if(paramValues.length == 1) {  
+                String paramValue = paramValues[0];  
+                if(paramValue.length() == 0) {  
+                   // out.println("<I>no value</I>");  
+                	logger.trace("paramValue: "+"no value");
+                } else {  
+                  //  out.println(paramValue);
+                	logger.trace("paramValue: "+paramValue);
+                }  
+            }else {  
+                // 这个参数有好几条值  
+                //out.println("<UL>");  
+                for(int i = 0; i < paramValues.length; i++) {  
+                   // out.println("<LI>" + paramValues[i]);  
+                	logger.trace("paramValue: "+paramValues[i]);
+                }  
+               // out.println("</UL>");  
+            }  
+        }  
     	
     	response.setContentType("text/html");  
         
@@ -47,17 +87,17 @@ public class main extends HttpServlet {
             int length = 0;  
             length = sis.readLine(buf, 0, buf.length);//使用sis的读取数据的方法  
             logger.trace("buf length===="+length);
-            logger.trace("buf===="+buf);
+            logger.trace("buf===="+new String(buf));
             while(length!=-1) {  
                 bos.write(buf, 0, length);  
                 length = sis.read(buf);  
-                logger.trace("buf===="+buf);
+                logger.trace("buf===="+ new String(buf));
             }  
             sis.close();  
             bos.close();  
             os.close();  
         }
-        logger.trace("end");
+        logger.trace("end\r\n");
     	
 /*    	logger.trace("entry");
     	logger.warn("main");

@@ -1,0 +1,10 @@
+<!--index.wxml-->
+<view class="container">
+  <view  class="userinfo">
+    <image class="userinfo-avatar" src="{{'../photo/1.png'}}" background-size="cover"></image>     
+    <text class="userinfo-nickname">{{"TPS汽车服务"}}</text> 
+  </view>
+  <view  bindtap="bindViewTap" class="usermotto">
+    <button >点击进入</button>
+  </view>
+</view>

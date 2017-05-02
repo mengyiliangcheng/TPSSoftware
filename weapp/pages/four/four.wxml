@@ -1,0 +1,8 @@
+<!--pages/four/four.wxml-->
+<view  class="userinfo-avatar2">
+      <image class="userinfo-avatar1" src="{{'../photo/S5/1.png'}}" background-size="cover"></image>
+      <image class="userinfo-avatar1" src="{{'../photo/S5/2.png'}}" background-size="cover"></image>
+      <image class="userinfo-avatar1" src="{{'../photo/S5/3.png'}}" background-size="cover"></image>
+      <image class="userinfo-avatar1" src="{{'../photo/S5/4.png'}}" background-size="cover"></image>  
+</view>
+<button open-type="contact">咨 询</button>

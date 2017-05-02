@@ -1,0 +1,25 @@
+<!--pages/third/third.wxml-->
+<view class="userinfo-avatar1">
+<button class="userinfo-avatar4"  >
+<input class="userinfo-avatar4" bindblur="newgoodsname"
+ placeholder="请输入商品名称(10字以内)" focus maxlength="10" />
+ </button>
+ <button class="userinfo-avatar4"  >
+<input class="userinfo-avatar4" bindblur="newgoodsprice"
+ placeholder="请输入商品价格(10字以内)" focus maxlength="10" />
+ </button>
+ <button class="userinfo-avatar4"  >
+ <input class="userinfo-avatar4" bindblur="newgoodsabstract"
+ placeholder="请输入商品简介(10字以内)" focus maxlength="10" />
+ </button>
+ </view>
+ 
+<view class="userinfo-avatar3">
+<button bindtap="addpicture">点击添加新商品图片</button>
+</view>
+<view class="userinfo-avatar3">
+<button bindtap="">完 成</button>
+</view>
+<image class="userinfo-avatar" src="{{tempFilePaths}}" background-size="cover"></image> 
+
+
