@@ -17,18 +17,29 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.io.File;  
+import java.util.Iterator;  
+import java.util.List;  
+
+import org.apache.commons.fileupload.FileItem;  
+import org.apache.commons.fileupload.FileItemFactory;  
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;  
+import org.apache.commons.fileupload.servlet.ServletFileUpload; 
+
 @WebServlet("/main")
 
 public class main extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
-    //private static Logger logger = LoggerFactory.getLogger(FileUploadServlet.class);
+	
+    //set logger设置日志记录
 	static String strClassName = main.class.getName();  
     static Logger logger = LogManager.getLogger(strClassName);
-  
+    
+  /*
     public void doGet(HttpServletRequest request, HttpServletResponse response)  
             throws IOException, ServletException { 
-    	/*test_logger log = new test_logger();*/
+    	test_logger log = new test_logger();
     	
     	logger.trace("doGet");
     	
@@ -99,7 +110,7 @@ public class main extends HttpServlet {
         }
         logger.trace("end\r\n");
     	
-/*    	logger.trace("entry");
+    	logger.trace("entry");
     	logger.warn("main");
     	logger.error("HttpServlet");
     	logger.trace("exit");
@@ -117,16 +128,81 @@ public class main extends HttpServlet {
         out.write("\r\n");  
         out.write("</H1>\r\n");  
         out.write("</body>\r\n");  
-        out.write("</html>");  */
+        out.write("</html>");  
 
+    }  */
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+    		throws IOException, ServletException{
+    	
+    	logger.trace("doGet start");
+    	String tempDirectory = "temp/";    //要在最后加上斜杠:temp/，缓存文件目录  
+        try {  
+            int sizeThreshold = 1024 * 64;  //写满该大小的缓存后，存入硬盘中。  
+            File repositoryFile = new File(tempDirectory);  
+            FileItemFactory factory = new DiskFileItemFactory(sizeThreshold, repositoryFile);  
+            
+            ServletFileUpload upload = new ServletFileUpload(factory);  
+            upload.setHeaderEncoding("utf-8");  //设置字符编码  
+            upload.setSizeMax(50 * 1024 * 1024); // 设置最大上传大小 set every upload file'size less than 50M  
+            List<FileItem> items = upload.parseRequest(request);   //这里开始执行上传  
+            Iterator iter = items.iterator();  
+              
+            while (iter.hasNext()) {  
+                FileItem item = (FileItem) iter.next();   //FileItem就是表示一个表单域。  
+                  
+                if(item.isFormField()){ //isFormField方法用于判断FileItem是否代表一个普通表单域(即非file表单域)  
+ 
+                    logger.trace("getFieldName: "+item.getFieldName());
+                    logger.trace("item: " + item.getString());
+                }else {  
+                    //String fieldName = item.getFieldName();  //获取表单域name属性的值  
+                    //String fileName = item.getName();     //返回该文件在客户机上的文件名。e.g: e:\dianying\\video\1.wmv  
+                    //System.out.println("*****"+fieldName);  
+                    //System.out.println("*****"+fileName);  
+                    String path = item.getName();  
+                    String fileName = path.substring(path.lastIndexOf("\\"));  
+                    logger.trace("filename: " + fileName);
+                    File uploadedFile = new File("video/" + fileName);  
+                    item.write(uploadedFile);  
+                    logger.trace("upload success!");
+                }  
+            } 
+            
+            
+        } catch (Exception e) {  
+            e.printStackTrace();  
+            logger.warn("exception: " + e.toString());
+        }  
+        
+/*        //利用request对象返回客户端来的输入流  
+        try (ServletInputStream sis = request.getInputStream()) {  
+              
+            OutputStream os = new FileOutputStream("file.txt");  
+            BufferedOutputStream bos = new BufferedOutputStream(os);  
+              
+            byte[] buf= new byte[10240];  
+            int length = 0;  
+            length = sis.readLine(buf, 0, buf.length);//使用sis的读取数据的方法  
+            logger.trace("buf length===="+length);
+            logger.trace("buf===="+new String(buf));
+            while(length!=-1) {  
+                bos.write(buf, 0, length);  
+                length = sis.read(buf);  
+                logger.trace("buf===="+ new String(buf));
+            }  
+            sis.close();  
+            bos.close();  
+            os.close();  
+        }*/
+  
+    }
+    @Override  
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
+    	logger.trace("doPost");
+    	this.doGet(request, response);
     }  
     
-    public void doPost(HttpServletRequest request, HttpServletResponse response)  
-            throws IOException, ServletException
-    {
-    	System.out.println("post");
-    	this.doGet(request, response);
-    }
     
     public void init() throws ServletException
     {

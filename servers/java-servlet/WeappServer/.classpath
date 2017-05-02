@@ -15,5 +15,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="E:/program/TPSSoftware/servers/java-servlet/WeappServer/WebContent/WEB-INF/lib/log4j-api-2.8.2.jar"/>
 	<classpathentry kind="lib" path="E:/program/TPSSoftware/servers/java-servlet/WeappServer/WebContent/WEB-INF/lib/log4j-core-2.8.2.jar"/>
+	<classpathentry kind="lib" path="E:/program/TPSSoftware/servers/java-servlet/WeappServer/WebContent/WEB-INF/lib/commons-fileupload-1.3.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
