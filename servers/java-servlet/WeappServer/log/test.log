@@ -1,2 +1,15 @@
-22:34:03.161 TRACE com.jxggdxw.www.main 138 doGet - doGet start
-22:34:03.179 WARN  com.jxggdxw.www.main 175 doGet - exception: org.apache.commons.fileupload.FileUploadBase$InvalidContentTypeException: the request doesn't contain a multipart/form-data or multipart/mixed stream, content type header is null
+23:24:25.086 TRACE com.jxggdxw.www.main 138 doGet - doGet start
+23:24:25.101 WARN  com.jxggdxw.www.main 176 doGet - exception: org.apache.commons.fileupload.FileUploadBase$InvalidContentTypeException: the request doesn't contain a multipart/form-data or multipart/mixed stream, content type header is null
+23:24:30.377 TRACE com.jxggdxw.www.main 203 doPost - doPost
+23:24:30.380 TRACE com.jxggdxw.www.main 138 doGet - doGet start
+23:24:30.440 TRACE com.jxggdxw.www.main 156 doGet - getFieldName: test
+23:24:30.442 TRACE com.jxggdxw.www.main 157 doGet - item: upload
+23:24:30.443 TRACE com.jxggdxw.www.main 156 doGet - getFieldName: goodsname
+23:24:30.443 TRACE com.jxggdxw.www.main 157 doGet - item: tps
+23:24:30.444 TRACE com.jxggdxw.www.main 156 doGet - getFieldName: goodsprice
+23:24:30.444 TRACE com.jxggdxw.www.main 157 doGet - item: 123
+23:24:30.445 TRACE com.jxggdxw.www.main 156 doGet - getFieldName: goodsabstract
+23:24:30.445 TRACE com.jxggdxw.www.main 157 doGet - item: none
+23:24:30.445 TRACE com.jxggdxw.www.main 164 doGet - org name: tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ57c4bfc9e166f79a65b195859cd11d13.jpg
+23:24:30.445 TRACE com.jxggdxw.www.main 166 doGet - filename: pic.jpg
+23:24:30.448 TRACE com.jxggdxw.www.main 169 doGet - upload success!

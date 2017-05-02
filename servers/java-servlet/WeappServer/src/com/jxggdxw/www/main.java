@@ -136,9 +136,9 @@ public class main extends HttpServlet {
     		throws IOException, ServletException{
     	
     	logger.trace("doGet start");
-    	String tempDirectory = "temp/";    //要在最后加上斜杠:temp/，缓存文件目录  
+    	String tempDirectory = "d:/temp/";    //要在最后加上斜杠:temp/，缓存文件目录  
         try {  
-            int sizeThreshold = 1024 * 64;  //写满该大小的缓存后，存入硬盘中。  
+            int sizeThreshold = 1024 * 512;  //写满该大小的缓存后，存入硬盘中。  
             File repositoryFile = new File(tempDirectory);  
             FileItemFactory factory = new DiskFileItemFactory(sizeThreshold, repositoryFile);  
             
@@ -161,9 +161,10 @@ public class main extends HttpServlet {
                     //System.out.println("*****"+fieldName);  
                     //System.out.println("*****"+fileName);  
                     String path = item.getName();  
-                    String fileName = path.substring(path.lastIndexOf("\\"));  
+                    logger.trace("org name: " + path);
+                    String fileName = "pic.jpg";  
                     logger.trace("filename: " + fileName);
-                    File uploadedFile = new File("video/" + fileName);  
+                    File uploadedFile = new File("d:/video/" + fileName);  
                     item.write(uploadedFile);  
                     logger.trace("upload success!");
                 }  
