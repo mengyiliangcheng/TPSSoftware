@@ -1,9 +1,6 @@
 // pages/third/third.js
 var uploadfn = require('../../utils/upload.js')
 var app = getApp()
-const ctx = wx.createCanvasContext('myCanvas')
-var initData = 'this is first line\nthis is second line'
-var extraLine = []
 var tempFilePaths
 var newgoodsname
 var goodsname
@@ -46,7 +43,6 @@ addpicture:function(){
             goodsname:newgoodsname,
             goodsprice:newgoodsprice,
             goodsabstract:newgoodsabstract,
-            picturename:newgoodsname+'-'+'0'  //第一张图片名称
           },
            name: newgoodsname,    //上传文件所对应的key
          success: function(uploadRes){
@@ -54,9 +50,14 @@ addpicture:function(){
             console.log('first_upload_success')
         //do something
              for(var i=1;i<res.tempFilePaths.length;i++){
-                 var Picturename=newgoodsname+'-'+i  //余后几张图片名称
-                 uploadfn(newgoodsname,Picturename, res.tempFilePaths[i])   //调用图片上传函数  
+                 uploadfn(newgoodsname,res.tempFilePaths[i])//调用图片上传函数 
             }
+             wx.showLoading({
+                  title: '上传成功',
+              })
+             setTimeout(function(){
+                    wx.hideLoading()
+               },750)
          },
          fail: function(e) {
             console.log('e', e)
@@ -69,7 +70,7 @@ addpicture:function(){
         }
     })
       
-          }
+    }
       })
     }
 })
