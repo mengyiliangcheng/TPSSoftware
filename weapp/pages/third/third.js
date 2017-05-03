@@ -47,6 +47,8 @@ addpicture:function(){
            name: newgoodsname,    //上传文件所对应的key
          success: function(uploadRes){
             var data = uploadRes.data
+            console.log(uploadRes)
+            console.log(data)
             console.log('first_upload_success')
         //do something
              for(var i=1;i<res.tempFilePaths.length;i++){

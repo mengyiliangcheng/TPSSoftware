@@ -14,6 +14,7 @@ function upload (Goodsname,localfilepath){
         },
     success: function(uploadRes){
         var data = uploadRes.data
+        console.log(data)
         console.log('success_upload')
         console.log(uploadRes)
         //do something
