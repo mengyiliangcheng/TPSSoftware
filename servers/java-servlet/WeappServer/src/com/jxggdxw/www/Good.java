@@ -1,5 +1,6 @@
 package com.jxggdxw.www;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -10,12 +11,16 @@ public class Good {
 	
 	private String GoodName = " ";
 	private String GoodPrice = " ";
-	private List<String> GoodPics;
+	private List<String> GoodPics = new ArrayList();
 	private String GoodsAbstract = " ";
 	
-	static String strClassName = Goods.class.getName();  
+	static String strClassName = Good.class.getName();  
     static Logger logger = LogManager.getLogger(strClassName);
 	
+    public Good(){
+    	
+    }
+    
 	public Good(String GoodName){
 		setGoodName(GoodName);
 	}
