@@ -21,6 +21,11 @@ public class Goods {
 	static String strClassName = Goods.class.getName();  
     static Logger logger = LogManager.getLogger(strClassName);
     
+    private static final String GOODS_SAVE_FILE_TEST = "goods.xml";
+    private static final String GOODS_SAVE_FILE_SERVER = "/usr/local/tomcat/webapps/WeappServer/pic/goods.xml";
+    
+    private static final String GOODS_SAVE_FILE = GOODS_SAVE_FILE_SERVER;
+    
     List<Good> goods = new ArrayList<Good>();
     
     public static void main(String[] args){
@@ -30,16 +35,31 @@ public class Goods {
     	good.setGoodPicUrl("baidu.com");
     	good.setGoodPicUrl("nexgo.cn");
     	
+    	Good good2 = new Good();
+    	good2.setGoodName("aaa");
+    	good2.setGoodPicUrl("xgd.cn");
+    	
     	Goods myGoods = new Goods();
     	myGoods.addGood(good);
     	myGoods.saveGoods();
     	logger.trace("goods over");
+    	myGoods.readGoods();
+    	logger.trace("read over");
+    	logger.trace(myGoods.toString());
+    	logger.trace("toString over");
+    	myGoods.updateGoods(good2);
+    	logger.trace("add over");
+    	logger.trace(myGoods.toString());
+    	myGoods.saveGoods();
+    	logger.trace("save over");
     }
     
     public Goods(){
     	document = initGoods();
     }
 	
+    /**
+     * 创建文件句柄*/
 	private Document initGoods() {
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try{
@@ -65,23 +85,133 @@ public class Goods {
 		return goods;
 	}
 	
+	public boolean updateGoods(Good good){
+		boolean flag = false;
+		
+		if(good == null){
+			return false;
+		}
+		
+		
+		Iterator<Good> iter = goods.iterator();
+		//logger.trace("goods size " + goods.size());
+		while(iter.hasNext()){
+			Good tmp = (Good)iter.next();
+			//logger.trace("tmp.getGoodName()" + tmp.getGoodName());
+			//logger.trace("good.getGoodName()" + good.getGoodName());
+			if(tmp.getGoodName().equals(good.getGoodName())){
+				flag = true;
+				
+				List<String> urls = good.getGoodPicUrls();
+				Iterator<String> urlsList = urls.iterator();
+				while(urlsList.hasNext()){
+					tmp.setGoodPicUrl((String)urlsList.next());
+				}
+				//logger.trace("equal");
+				break;
+			}
+		}
+		
+		if(flag){
+			
+		}else{
+			addGood(good);
+		}
+		
+		return true;
+	}
+	
+	public String toString(){
+		
+		String str = new String();
+		Iterator iter = goods.iterator();
+		while(iter.hasNext()){
+			Good good = (Good)iter.next();
+			//logger.trace(good.toString());
+			str += good.toString();
+		}
+		//logger.trace("toString rlt "+str);
+		return str;
+	}
+	
+	public boolean readGoods(){
+		
+		File file = new File(GOODS_SAVE_FILE);
+		if(!file.exists()){
+			return false;
+		}
+		
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        Document doc;
+        try{
+        	
+    	   DocumentBuilder builder = factory.newDocumentBuilder();
+           doc = builder.parse(GOODS_SAVE_FILE);      
+        }catch(Exception e){
+        	logger.error("read goods error " + e.getMessage());
+        	return false;
+        }
+     
+        NodeList plist = doc.getElementsByTagName("good");
+        goods = new ArrayList<Good>();
+        
+        for(int i=0;i<plist.getLength();i++){
+            Element elem = (Element)plist.item(i);
+            Good good = null;
+            
+            try{
+	            good = new Good(elem.getElementsByTagName("name").item(0).getFirstChild().getNodeValue());
+	            good.setGoodPrice(elem.getElementsByTagName("price").item(0).getFirstChild().getNodeValue());
+	            good.setGoodAbstract(elem.getElementsByTagName("abstract").item(0).getFirstChild().getNodeValue());
+	            
+	            Node urlsNode = elem.getElementsByTagName("urls").item(0);
+	            NodeList urlList = urlsNode.getChildNodes();
+	      
+	            //logger.trace("url num: " + urlList.getLength());
+	            for(int j =0; j< urlList.getLength();j++){
+	            	
+	            	Element urlelem = (Element)urlList.item(j);
+	            	//logger.trace(urlelem.getFirstChild().getNodeValue());
+	            	good.setGoodPicUrl(urlelem.getFirstChild().getNodeValue());
+	            }
+            }catch(Exception e){
+            	logger.error("read goods error: " + "list i: " + i + " info: " + e.getMessage());
+            	
+            }
+            
+            logger.trace(good.toString());
+            
+            goods.add(good);
+        }
+        
+		return true;
+	}
+	
+	/**
+	 * 
+	 * 保存xml文件*/
 	public boolean saveGoods(){
 		if(goods == null){
 			return false;
 		}
 		
+		document = initGoods();
+		
 		Element goodsElem = document.createElement("goods");
 		
+		//添加节点
 		Iterator<Good> iter =  goods.iterator();
 		while(iter.hasNext()){
 			Good good = (Good)iter.next();
 			Element goodElem = document.createElement("good");
 			Element nameElem = document.createElement("name");
 			Element priceElem = document.createElement("price");
+			Element abstractElem = document.createElement("abstract");
 			Element urlsElem = document.createElement("urls");
 			
 			nameElem.appendChild(document.createTextNode(good.getGoodName()));
 			priceElem.appendChild(document.createTextNode(good.getGoodPrice()));
+			abstractElem.appendChild(document.createTextNode(good.getGoodsAbstract()));
 			
 			Iterator<String> urlIter = good.getGoodPicUrls().iterator();
 			while(urlIter.hasNext()){
@@ -93,22 +223,31 @@ public class Goods {
 			
 			goodElem.appendChild(nameElem);
 			goodElem.appendChild(priceElem);
+			goodElem.appendChild(abstractElem);
 			goodElem.appendChild(urlsElem);
 			
 			goodsElem.appendChild(goodElem);
 		}
 		
+		File file = new File(GOODS_SAVE_FILE);
+		if(file.exists()){
+			file.delete();
+		}
+
+		//保存文件
 		document.appendChild(goodsElem);
         DOMSource source = new DOMSource(document);
         TransformerFactory tf = TransformerFactory.newInstance();
         try{
 	        Transformer t = tf.newTransformer();
-	        StreamResult result = new StreamResult(new File("goods.xml"));
+	        StreamResult result = new StreamResult(new File(GOODS_SAVE_FILE));
 	        t.transform(source,result);
         }catch(Exception e){
         	logger.error("transformer error： " + e.getMessage());
         	return false;
         }
+        
+        logger.trace("save over");
 		return true;
 	}
 }

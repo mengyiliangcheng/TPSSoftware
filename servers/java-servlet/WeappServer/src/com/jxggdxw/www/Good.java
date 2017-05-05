@@ -1,6 +1,7 @@
 package com.jxggdxw.www;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -54,4 +55,16 @@ public class Good {
 		return GoodPics;
 	}
 
+	public String toString(){
+		
+		String url = new String();
+		//logger.trace(GoodPics.toString());
+		
+		Iterator<String> iter = GoodPics.iterator();
+		while(iter.hasNext()){
+			url += " url->"+ iter.next();
+		}
+		
+		return ("name->"+GoodName + " price->" + GoodPrice + " abstract: " + GoodsAbstract +" urls: " + url + "\r\n");
+	}
 }

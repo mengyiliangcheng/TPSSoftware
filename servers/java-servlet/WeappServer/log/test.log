@@ -1,1 +1,9 @@
-23:44:07.993 TRACE com.jxggdxw.www.Goods 36 main - goods over
+23:24:30.135 TRACE com.jxggdxw.www.GoodInfo 39 doGet - doGet start
+23:24:30.148 TRACE com.jxggdxw.www.GoodInfo 61 doGet - doGet over
+
+23:24:56.385 TRACE com.jxggdxw.www.GoodInfo 39 doGet - doGet start
+23:24:56.388 TRACE com.jxggdxw.www.GoodInfo 61 doGet - doGet over
+
+23:28:18.190 TRACE com.jxggdxw.www.GoodInfo 39 doGet - doGet start
+23:28:18.191 TRACE com.jxggdxw.www.GoodInfo 61 doGet - doGet over
+

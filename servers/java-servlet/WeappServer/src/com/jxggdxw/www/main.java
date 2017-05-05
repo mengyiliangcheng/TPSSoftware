@@ -32,17 +32,21 @@ public class main extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
+	//windows 端文件存放地址
+	private static final String TEMP_DIR_TEST 	= "d:/temp/";
+	private static final String PIC_DIR_TEST  	= "d:/video/";
+	
 	//linux 端文件存放地址
-	private static final String TEMP_DIR = "/usr/local/tomcat/webapps/WeappServer/temp/"; //要在最后加上斜杠:temp/，缓存文件目录,需要在磁盘手动建立temp文件夹，否则不能保存  
-	private static final String PIC_DIR  = "/usr/local/tomcat/webapps/WeappServer/pic/";
+	private static final String TEMP_DIR_SERVER 	= "/usr/local/tomcat/webapps/WeappServer/temp/";
+	private static final String PIC_DIR_SERVER  	= "/usr/local/tomcat/webapps/WeappServer/pic/";
+	
+	
+	private static final String TEMP_DIR = TEMP_DIR_SERVER; //要在最后加上斜杠:temp/，缓存文件目录,需要在磁盘手动建立temp文件夹，否则不能保存  
+	private static final String PIC_DIR  = PIC_DIR_SERVER;
 	
 	//url基地址
 	private static final String PIC_URL_BASE	= "https://32906079.jxggdxw.com:8443/WeappServer/pic/";
 	private static final String PIC_URL_FILE    = "/usr/local/tomcat/webapps/WeappServer/pic/url.txt";
-	
-	//windows 端文件存放地址
-	private static final String TEMP_DIR_TEST 	= "d:/temp/";
-	private static final String PIC_DIR_TEST  	= "d:/video/";
 	
 	//商品信息字符串常量
 	private static final String STR_GOOD_NAME 	= "goodsname";
@@ -126,7 +130,11 @@ public class main extends HttpServlet {
     
     	logger.trace("doPost start ");
     	
-    	String tempDirectory = TEMP_DIR_TEST;
+    	Goods goods = new Goods();
+    	goods.readGoods();
+    	Good good = new Good();
+    	
+    	String tempDirectory = TEMP_DIR;
         try {    
             File repositoryFile = new File(tempDirectory);  
             FileItemFactory factory = new DiskFileItemFactory(MAX_TEMP_BUF_SIZE, repositoryFile);  
@@ -146,6 +154,17 @@ public class main extends HttpServlet {
  
                     logger.trace("getFieldName: "+item.getFieldName());
                     logger.trace("item: " + item.getString());
+                    
+                    if(item.getFieldName().equals(STR_GOOD_NAME)){
+                    	good.setGoodName(item.getString());
+                    }else if(item.getFieldName().equals(STR_GOOD_PRICE)){
+                    	good.setGoodPrice(item.getString());
+                    }else if(item.getFieldName().equals(STR_GOOD_ABSTRACT)){
+                    	good.setGoodAbstract(item.getString());
+                    }else{
+                    	
+                    }
+                    
                 }else {    //file
                 	
                 	String fieldName = item.getFieldName();  //获取表单域name属性的值  
@@ -153,19 +172,28 @@ public class main extends HttpServlet {
                     
                     logger.trace("fieldName: " + fieldName);
                     logger.trace("filename: " + fileName);
+                    
+                    good.setGoodName(fieldName);
 
-                    File uploadedFile = new File(PIC_DIR_TEST + fileName);
+                    File uploadedFile = new File(PIC_DIR + fileName);
                     item.write(uploadedFile);  
                     logger.trace("upload success!");
                     
                     //回复给客户端一个信息      
                     pw.println(PIC_URL_BASE + fileName);  
+                    good.setGoodPicUrl(PIC_URL_BASE + fileName); 
                 }  
             }    
         } catch (Exception e) {  
             e.printStackTrace();  
             logger.warn("exception: " + e.toString());
         }  
+        
+        logger.trace("upload good: " + good.toString());
+        
+        goods.updateGoods(good);
+        
+        goods.saveGoods();
         
         logger.trace("doGet over\r\n");
     }  
