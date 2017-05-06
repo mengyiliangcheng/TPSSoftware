@@ -1,11 +1,118 @@
-16:05:37.659 ERROR com.jxggdxw.www.Goods 286 saveGoods - transformer error： java.io.FileNotFoundException: E:\usr\local\tomcat\webapps\WeappServer\pic\goods.xml (系统找不到指定的路径。)
-16:05:37.663 TRACE com.jxggdxw.www.Goods 43 main - goods over
-16:05:37.664 TRACE com.jxggdxw.www.Goods 45 main - read over
-16:05:37.664 TRACE com.jxggdxw.www.Goods 46 main - name->aaa price->123 abstract:   urls:  url->baidu.com url->nexgo.cn
+17:55:48.560 TRACE com.jxggdxw.www.main 42 doGet - doGet start
+17:55:48.566 TRACE com.jxggdxw.www.main 45 doGet - doGet over
 
-16:05:37.664 TRACE com.jxggdxw.www.Goods 47 main - toString over
-16:05:37.664 TRACE com.jxggdxw.www.Goods 49 main - add over
-16:05:37.664 TRACE com.jxggdxw.www.Goods 50 main - name->aaa price->123 abstract:   urls:  url->baidu.com url->nexgo.cn url->xgd.cn
+17:55:55.415 TRACE com.jxggdxw.www.main 51 doPost - doPost start 
+17:55:55.434 TRACE com.jxggdxw.www.Goods 222 readGoods - name->商品 price->21312 abstract: ?????? urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQe8bc5bd0f503e8bacf12c4e9309b29ab.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQf7b240244230f3684c925ae1c8f6ee6c.jpg
 
-16:05:37.665 ERROR com.jxggdxw.www.Goods 286 saveGoods - transformer error： java.io.FileNotFoundException: E:\usr\local\tomcat\webapps\WeappServer\pic\goods.xml (系统找不到指定的路径。)
-16:05:37.666 TRACE com.jxggdxw.www.Goods 52 main - save over
+17:55:55.521 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsname
+17:55:55.522 TRACE com.jxggdxw.www.main 84 doPost - value: 商品
+17:55:55.522 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsprice
+17:55:55.523 TRACE com.jxggdxw.www.main 84 doPost - value: 21312
+17:55:55.523 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsabstract
+17:55:55.523 TRACE com.jxggdxw.www.main 84 doPost - value: 简介
+17:55:55.524 TRACE com.jxggdxw.www.main 101 doPost - fieldName: 商品
+17:55:55.524 TRACE com.jxggdxw.www.main 102 doPost - filename: tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQa576707f469cf00e0d8cf92bee74fe1e.jpg
+17:55:55.525 TRACE com.jxggdxw.www.main 108 doPost - upload success!
+17:55:55.525 TRACE com.jxggdxw.www.main 120 doPost - upload good: name->商品 price->21312 abstract: 简介 urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQa576707f469cf00e0d8cf92bee74fe1e.jpg
+
+17:55:55.549 TRACE com.jxggdxw.www.Goods 290 saveGoods - save over
+17:55:55.550 TRACE com.jxggdxw.www.main 126 doPost - doGet over
+
+17:55:55.593 TRACE com.jxggdxw.www.main 51 doPost - doPost start 
+17:55:55.598 TRACE com.jxggdxw.www.Goods 222 readGoods - name->商品 price->21312 abstract: ?????? urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQe8bc5bd0f503e8bacf12c4e9309b29ab.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQf7b240244230f3684c925ae1c8f6ee6c.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQa576707f469cf00e0d8cf92bee74fe1e.jpg
+
+17:55:55.671 TRACE com.jxggdxw.www.main 101 doPost - fieldName: 商品
+17:55:55.672 TRACE com.jxggdxw.www.main 102 doPost - filename: tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ02f29ef0653fec76a5b35f098b54d1d4.jpg
+17:55:55.672 TRACE com.jxggdxw.www.main 108 doPost - upload success!
+17:55:55.672 TRACE com.jxggdxw.www.main 120 doPost - upload good: name->商品 price->  abstract:   urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ02f29ef0653fec76a5b35f098b54d1d4.jpg
+
+17:55:55.676 TRACE com.jxggdxw.www.Goods 290 saveGoods - save over
+17:55:55.678 TRACE com.jxggdxw.www.main 126 doPost - doGet over
+
+17:56:36.025 TRACE com.jxggdxw.www.main 51 doPost - doPost start 
+17:56:36.059 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsname
+17:56:36.060 TRACE com.jxggdxw.www.main 84 doPost - value: 商品
+17:56:36.061 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsprice
+17:56:36.062 TRACE com.jxggdxw.www.main 84 doPost - value: 21312
+17:56:36.064 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsabstract
+17:56:36.065 TRACE com.jxggdxw.www.main 84 doPost - value: 简介
+17:56:36.067 TRACE com.jxggdxw.www.main 101 doPost - fieldName: 商品
+17:56:36.068 TRACE com.jxggdxw.www.main 102 doPost - filename: tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ6be01052c539652cb1c1e3dad635b559.jpg
+17:56:36.070 TRACE com.jxggdxw.www.main 108 doPost - upload success!
+17:56:36.070 TRACE com.jxggdxw.www.main 120 doPost - upload good: name->商品 price->21312 abstract: 简介 urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ6be01052c539652cb1c1e3dad635b559.jpg
+
+17:56:36.075 TRACE com.jxggdxw.www.Goods 290 saveGoods - save over
+17:56:36.076 TRACE com.jxggdxw.www.main 126 doPost - doGet over
+
+17:56:36.114 TRACE com.jxggdxw.www.main 51 doPost - doPost start 
+17:56:36.132 TRACE com.jxggdxw.www.Goods 222 readGoods - name->商品 price->21312 abstract: 简介 urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ6be01052c539652cb1c1e3dad635b559.jpg
+
+17:56:36.153 TRACE com.jxggdxw.www.main 101 doPost - fieldName: 商品
+17:56:36.154 TRACE com.jxggdxw.www.main 102 doPost - filename: tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQae6f0755a48cccb93152eecfa4a0874c.jpg
+17:56:36.154 TRACE com.jxggdxw.www.main 108 doPost - upload success!
+17:56:36.155 TRACE com.jxggdxw.www.main 120 doPost - upload good: name->商品 price->  abstract:   urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQae6f0755a48cccb93152eecfa4a0874c.jpg
+
+17:56:36.160 TRACE com.jxggdxw.www.Goods 290 saveGoods - save over
+17:56:36.161 TRACE com.jxggdxw.www.main 126 doPost - doGet over
+
+17:57:20.610 TRACE com.jxggdxw.www.main 42 doGet - doGet start
+17:57:20.611 TRACE com.jxggdxw.www.main 45 doGet - doGet over
+
+17:57:33.268 TRACE com.jxggdxw.www.main 51 doPost - doPost start 
+17:57:33.271 TRACE com.jxggdxw.www.Goods 222 readGoods - name->商品 price->21312 abstract: 简介 urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ6be01052c539652cb1c1e3dad635b559.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQae6f0755a48cccb93152eecfa4a0874c.jpg
+
+17:57:33.291 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsname
+17:57:33.292 TRACE com.jxggdxw.www.main 84 doPost - value: 商品
+17:57:33.292 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsprice
+17:57:33.292 TRACE com.jxggdxw.www.main 84 doPost - value: 21312
+17:57:33.292 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsabstract
+17:57:33.293 TRACE com.jxggdxw.www.main 84 doPost - value: 简介
+17:57:33.293 TRACE com.jxggdxw.www.main 101 doPost - fieldName: 商品
+17:57:33.293 TRACE com.jxggdxw.www.main 102 doPost - filename: tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQa8c625bb5cf82e7c5d1de5d0ab649018.jpg
+17:57:33.293 TRACE com.jxggdxw.www.main 108 doPost - upload success!
+17:57:33.294 TRACE com.jxggdxw.www.main 120 doPost - upload good: name->商品 price->21312 abstract: 简介 urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQa8c625bb5cf82e7c5d1de5d0ab649018.jpg
+
+17:57:33.297 TRACE com.jxggdxw.www.Goods 290 saveGoods - save over
+17:57:33.298 TRACE com.jxggdxw.www.main 126 doPost - doGet over
+
+17:57:33.345 TRACE com.jxggdxw.www.main 51 doPost - doPost start 
+17:57:33.350 TRACE com.jxggdxw.www.Goods 222 readGoods - name->商品 price->21312 abstract: 简介 urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ6be01052c539652cb1c1e3dad635b559.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQae6f0755a48cccb93152eecfa4a0874c.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQa8c625bb5cf82e7c5d1de5d0ab649018.jpg
+
+17:57:33.389 TRACE com.jxggdxw.www.main 101 doPost - fieldName: 商品
+17:57:33.390 TRACE com.jxggdxw.www.main 102 doPost - filename: tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQe19678bba339ff6fd370a7fce64b133f.jpg
+17:57:33.390 TRACE com.jxggdxw.www.main 108 doPost - upload success!
+17:57:33.391 TRACE com.jxggdxw.www.main 120 doPost - upload good: name->商品 price->  abstract:   urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQe19678bba339ff6fd370a7fce64b133f.jpg
+
+17:57:33.404 TRACE com.jxggdxw.www.Goods 290 saveGoods - save over
+17:57:33.405 TRACE com.jxggdxw.www.main 126 doPost - doGet over
+
+17:58:08.409 TRACE com.jxggdxw.www.main 51 doPost - doPost start 
+17:58:08.412 TRACE com.jxggdxw.www.Goods 222 readGoods - name->商品 price->21312 abstract: 简介 urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ6be01052c539652cb1c1e3dad635b559.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQae6f0755a48cccb93152eecfa4a0874c.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQa8c625bb5cf82e7c5d1de5d0ab649018.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQe19678bba339ff6fd370a7fce64b133f.jpg
+
+17:58:08.440 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsname
+17:58:08.441 TRACE com.jxggdxw.www.main 84 doPost - value: 牙刷
+17:58:08.441 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsprice
+17:58:08.441 TRACE com.jxggdxw.www.main 84 doPost - value: 233
+17:58:08.441 TRACE com.jxggdxw.www.main 80 doPost - get field name：goodsabstract
+17:58:08.442 TRACE com.jxggdxw.www.main 84 doPost - value: 用于刷牙
+17:58:08.443 TRACE com.jxggdxw.www.main 101 doPost - fieldName: 牙刷
+17:58:08.447 TRACE com.jxggdxw.www.main 102 doPost - filename: tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ81d7526ed81a9a48e9a683d8c2b034bd.jpg
+17:58:08.450 TRACE com.jxggdxw.www.main 108 doPost - upload success!
+17:58:08.450 TRACE com.jxggdxw.www.main 120 doPost - upload good: name->牙刷 price->233 abstract: 用于刷牙 urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ81d7526ed81a9a48e9a683d8c2b034bd.jpg
+
+17:58:08.457 TRACE com.jxggdxw.www.Goods 290 saveGoods - save over
+17:58:08.458 TRACE com.jxggdxw.www.main 126 doPost - doGet over
+
+17:58:08.484 TRACE com.jxggdxw.www.main 51 doPost - doPost start 
+17:58:08.487 TRACE com.jxggdxw.www.Goods 222 readGoods - name->商品 price->21312 abstract: 简介 urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ6be01052c539652cb1c1e3dad635b559.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQae6f0755a48cccb93152eecfa4a0874c.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQa8c625bb5cf82e7c5d1de5d0ab649018.jpg url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQe19678bba339ff6fd370a7fce64b133f.jpg
+
+17:58:08.488 TRACE com.jxggdxw.www.Goods 222 readGoods - name->牙刷 price->233 abstract: 用于刷牙 urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ81d7526ed81a9a48e9a683d8c2b034bd.jpg
+
+17:58:08.494 TRACE com.jxggdxw.www.main 101 doPost - fieldName: 牙刷
+17:58:08.494 TRACE com.jxggdxw.www.main 102 doPost - filename: tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ2f8201c99fc9ea766c1e80e8509dcad6.jpg
+17:58:08.495 TRACE com.jxggdxw.www.main 108 doPost - upload success!
+17:58:08.495 TRACE com.jxggdxw.www.main 120 doPost - upload good: name->牙刷 price->  abstract:   urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ2f8201c99fc9ea766c1e80e8509dcad6.jpg
+
+17:58:08.497 TRACE com.jxggdxw.www.Goods 290 saveGoods - save over
+17:58:08.498 TRACE com.jxggdxw.www.main 126 doPost - doGet over
+

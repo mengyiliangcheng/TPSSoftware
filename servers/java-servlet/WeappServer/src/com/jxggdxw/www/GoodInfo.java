@@ -9,6 +9,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -43,6 +44,8 @@ public class GoodInfo extends HttpServlet {
             pw.println("no file!"); 
     	}
     	
+    	//Map<String,String[]> data = request.getParameterMap();
+    	//logger.trace(data.toString());
     	
     	String cmd = request.getParameter(GlobalParam.STR_COMMAND);
     	logger.trace("command: " + cmd);

@@ -28,13 +28,13 @@ public class Goods {
      * 测试代码*/
     public static void main(String[] args){
     	Good good = new Good();
-    	good.setGoodName("aaa");
+    	good.setGoodName("张三");
     	good.setGoodPrice("123");
     	good.setGoodPicUrl("baidu.com");
     	good.setGoodPicUrl("nexgo.cn");
     	
     	Good good2 = new Good();
-    	good2.setGoodName("aaa");
+    	good2.setGoodName("李四");
     	good2.setGoodPicUrl("xgd.cn");
     	
     	Goods myGoods = new Goods();

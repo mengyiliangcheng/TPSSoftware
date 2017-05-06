@@ -72,15 +72,23 @@ public class main extends HttpServlet {
                   
                 if(item.isFormField()){ //isFormField方法用于判断FileItem是否代表一个普通表单域(即非file表单域)  
  
-                    logger.trace("getFieldName: "+item.getFieldName());
-                    logger.trace("item: " + item.getString());
+                   // logger.trace("getFieldName: "+item.getFieldName());
+                   // logger.trace("item: " + item.getString());
+                    
+                    String fieldname = item.getFieldName();
+                    fieldname = new String(fieldname.getBytes("iso8859-1"),"utf-8");
+                    logger.trace("get field name：" + fieldname);
+                    
+                    String itemvalue = item.getString();
+                    itemvalue = new String(itemvalue.getBytes("iso8859-1"),"utf-8");
+                    logger.trace("value: " + itemvalue);
                     
                     if(item.getFieldName().equals(GlobalParam.STR_GOOD_NAME)){
-                    	good.setGoodName(item.getString());
+                    	good.setGoodName(itemvalue);
                     }else if(item.getFieldName().equals(GlobalParam.STR_GOOD_PRICE)){
-                    	good.setGoodPrice(item.getString());
+                    	good.setGoodPrice(itemvalue);
                     }else if(item.getFieldName().equals(GlobalParam.STR_GOOD_ABSTRACT)){
-                    	good.setGoodAbstract(item.getString());
+                    	good.setGoodAbstract(itemvalue);
                     }else{
                     	
                     }
