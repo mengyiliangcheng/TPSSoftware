@@ -239,13 +239,10 @@ public class Goods {
             }catch(Exception e){
             	logger.error("read goods error: " + "list i: " + i + " info: " + e.getMessage());
             	
-            }
-            
-            logger.trace(good.toString());
-            
+            }  
             goods.add(good);
         }
-        
+        logger.trace("read success: "+goods.toString());
 		return true;
 	}
 	

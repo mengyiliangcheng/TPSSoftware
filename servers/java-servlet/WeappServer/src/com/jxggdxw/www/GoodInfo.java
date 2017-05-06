@@ -37,7 +37,7 @@ public class GoodInfo extends HttpServlet {
     		throws IOException, ServletException{
     	
     	logger.trace("doGet start"); 
-    	response.setCharacterEncoding("GB2312");
+    	//response.setCharacterEncoding("GB2312");
     	
     	File file = new File(GlobalParam.GOODS_SAVE_FILE);
     	if(!file.exists()){
@@ -59,7 +59,8 @@ public class GoodInfo extends HttpServlet {
     	//sendGoodsName(response);
     	
     	String cmd = request.getParameter(GlobalParam.STR_COMMAND);
-    	logger.trace("command: " + cmd);
+    	logger.error("command: " + cmd);
+    	
     	if(null == cmd){
     		return ;
     	}
@@ -70,6 +71,7 @@ public class GoodInfo extends HttpServlet {
     			
     		case GlobalParam.STR_COMMAND_GOOD_INFO:
     			String name = request.getParameter(GlobalParam.STR_COMMAND_GOOD_NAME);
+    			name = new String(name.getBytes("iso8859-1"),"utf-8");
     			logger.trace("name->" + name);
     			sendGoodInfoJson(name,response);
     			break;
