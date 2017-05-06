@@ -2,6 +2,7 @@ package com.jxggdxw.www;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONArray;
 import org.w3c.dom.*;
 
 import java.io.File;
@@ -122,6 +123,25 @@ public class Goods {
 		return true;
 	}
 	
+	public JSONArray getGoodInfoJson(String name){
+		JSONArray json ;
+		
+		Iterator iter = goods.iterator();
+		while(iter.hasNext()){
+			
+			Good good = (Good) iter.next();
+			logger.trace("good name: " + good.getGoodName());
+			logger.trace("name: " + name);
+			if(good.getGoodName().equals(name)){
+				json = good.getGoodInfoJson();
+				return json;
+			}
+		}
+		
+		logger.error("can not found good info");
+		return null;
+	}
+	
 	public List<String> getGoodInfo(String name){
 		List<String> info = new ArrayList<String>();
 		
@@ -129,6 +149,8 @@ public class Goods {
 		while(iter.hasNext()){
 			
 			Good good = (Good) iter.next();
+			logger.trace("good name: " + good.getGoodName());
+			logger.trace("name: " + name);
 			if(good.getGoodName().equals(name)){
 				info = good.getGoodInfo();
 				return info;

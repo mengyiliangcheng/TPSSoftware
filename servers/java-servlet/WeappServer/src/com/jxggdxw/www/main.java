@@ -75,6 +75,7 @@ public class main extends HttpServlet {
                    // logger.trace("getFieldName: "+item.getFieldName());
                    // logger.trace("item: " + item.getString());
                     
+                	//解决中文乱码
                     String fieldname = item.getFieldName();
                     fieldname = new String(fieldname.getBytes("iso8859-1"),"utf-8");
                     logger.trace("get field name：" + fieldname);

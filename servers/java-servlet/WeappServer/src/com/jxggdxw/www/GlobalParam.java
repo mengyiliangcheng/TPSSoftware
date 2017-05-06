@@ -33,9 +33,13 @@ public class GlobalParam {
 	public static final int MAX_FILE_SIZE 			= 50 * 1024 * 1024;
 	
 	//文件存储地址常量
-	public static final String GOODS_SAVE_FILE = GOODS_SAVE_FILE_TEST;
+/*	public static final String GOODS_SAVE_FILE = GOODS_SAVE_FILE_TEST;
 	public static final String TEMP_DIR = TEMP_DIR_TEST; //要在最后加上斜杠:temp/，缓存文件目录,需要在磁盘手动建立temp文件夹，否则不能保存  
-	public static final String PIC_DIR  = PIC_DIR_TEST;
+	public static final String PIC_DIR  = PIC_DIR_TEST;*/
+	
+	public static final String GOODS_SAVE_FILE = GOODS_SAVE_FILE_SERVER;
+	public static final String TEMP_DIR = TEMP_DIR_SERVER; //要在最后加上斜杠:temp/，缓存文件目录,需要在磁盘手动建立temp文件夹，否则不能保存  
+	public static final String PIC_DIR  = PIC_DIR_SERVER;
 	
 	private GlobalParam(){
 		

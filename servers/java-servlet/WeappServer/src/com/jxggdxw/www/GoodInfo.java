@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 @WebServlet("/GoodInfo")
 public class GoodInfo extends HttpServlet {
@@ -35,6 +37,7 @@ public class GoodInfo extends HttpServlet {
     		throws IOException, ServletException{
     	
     	logger.trace("doGet start"); 
+    	response.setCharacterEncoding("GB2312");
     	
     	File file = new File(GlobalParam.GOODS_SAVE_FILE);
     	if(!file.exists()){
@@ -43,9 +46,17 @@ public class GoodInfo extends HttpServlet {
             //回复给客户端一个信息      
             pw.println("no file!"); 
     	}
+        //PrintWriter pw = response.getWriter();  
+        
+        //response.setHeader("content-type","text/html;charset=UTF-8");
+        //response.setCharacterEncoding("GB2312");
+        //回复给客户端一个信息      
+        //pw.println("中文!"); 
     	
     	//Map<String,String[]> data = request.getParameterMap();
     	//logger.trace(data.toString());
+    	
+    	//sendGoodsName(response);
     	
     	String cmd = request.getParameter(GlobalParam.STR_COMMAND);
     	logger.trace("command: " + cmd);
@@ -54,13 +65,13 @@ public class GoodInfo extends HttpServlet {
     	}
     	switch(cmd){
     		case GlobalParam.STR_COMMAND_ALL_GOODS:
-    			sendGoodsName(response);
+    			sendGoodsNameJson(response);
     			break;
     			
     		case GlobalParam.STR_COMMAND_GOOD_INFO:
     			String name = request.getParameter(GlobalParam.STR_COMMAND_GOOD_NAME);
     			logger.trace("name->" + name);
-    			sendGoodInfo(name,response);
+    			sendGoodInfoJson(name,response);
     			break;
     			
     		default:
@@ -83,12 +94,45 @@ public class GoodInfo extends HttpServlet {
     	doGet(request,response);
     }
     
+    public void sendGoodInfoJson(String name,HttpServletResponse response){
+    	
+    	Goods goods = new Goods();
+    	goods.readGoods();
+    	
+    	PrintWriter pw ;
+    	
+    	//解决中文乱码
+    	response.setHeader("content-type","text/html;charset=GB2312");
+    	response.setCharacterEncoding("GB2312");
+    	
+    	//List<String> info = goods.getGoodInfo(name);
+    	JSONArray json = goods.getGoodInfoJson(name);
+    	
+    	if(null == json){
+    		json = new JSONArray();
+    		json.put("no good info");
+    	}
+    	try{
+    		pw = response.getWriter();  
+    	}catch(Exception e){
+    		logger.error("sendGoodInfo error" + e.toString());
+    		return ;
+    	}
+    	
+        //回复给客户端一个信息      
+        pw.println(json); 
+    }
+    
     public void sendGoodInfo(String name,HttpServletResponse response){
     	
     	Goods goods = new Goods();
     	goods.readGoods();
     	
     	PrintWriter pw ;
+    	
+    	//解决中文乱码
+    	response.setHeader("content-type","text/html;charset=GB2312");
+    	response.setCharacterEncoding("GB2312");
     	
     	List<String> info = goods.getGoodInfo(name);
     	
@@ -107,6 +151,41 @@ public class GoodInfo extends HttpServlet {
         pw.println(info); 
     }
     
+public void sendGoodsNameJson( HttpServletResponse response){
+    	
+    	Goods goods = new Goods();
+    	
+    	goods.readGoods();
+    	
+    	List<String> nameList = goods.getGoodsName();
+    	PrintWriter pw ;
+    	response.setHeader("content-type","text/html;charset=GB2312");
+    	response.setCharacterEncoding("GB2312");
+    	try{
+    		pw = response.getWriter();  
+    	}catch(Exception e){
+    		logger.error("sendGoodsName error " + e.toString());
+    		return ;
+    	}
+    	
+    	
+    	JSONArray json = new JSONArray();
+    	for(String li: nameList){
+    		JSONObject jo = new JSONObject();
+    		try{
+    			jo.put("name",li);
+    		}catch(Exception e){
+    			logger.error("add json error " + e.toString());
+    			return ;
+    		}
+    		json.put(jo);
+    	}
+        
+    	logger.trace("json string: " + json.toString());
+        //回复给客户端一个信息      
+        pw.println(json.toString()); 
+    }
+
     public void sendGoodsName( HttpServletResponse response){
     	
     	Goods goods = new Goods();
@@ -115,14 +194,15 @@ public class GoodInfo extends HttpServlet {
     	
     	List<String> nameList = goods.getGoodsName();
     	PrintWriter pw ;
-    	
+    	response.setHeader("content-type","text/html;charset=GB2312");
+    	response.setCharacterEncoding("GB2312");
     	try{
     		pw = response.getWriter();  
     	}catch(Exception e){
     		logger.error("sendGoodsName error " + e.toString());
     		return ;
     	}
-        
+    	
         //回复给客户端一个信息      
         pw.println(nameList); 
     }
