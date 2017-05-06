@@ -76,16 +76,25 @@ onShow: function(options) {
       wx.request({
     url:  'https://32906079.jxggdxw.com:8443/WeappServer/GoodInfo',
     data: {
-      command:'getgoodsname'
+      //command:'getgoodsname'
+      command:'getgoodinfo' ,
+      name:'qqq'
+      /*command:'getgoodinfo',
+      goodsname:'',
+      goodsprice:'',
+      goodsabstract:'',
+      goodsurl:[]*/
     },
     method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-    /*header: {
-     'content-type':'application/json'
-   }, // 设置请求的 header*/
+    header: {
+     'content-type':'application/x-www-form-urlencoded'
+   }, // 设置请求的 header
     success: function(res){
       // success
-      console.log(res)
-      //console.log(res.data),
+      console.log(res),
+      console.log(res.data[1].name)
+      console.log(res.data[0])
+      console.log(res.data[3].urls)
       //console.log(res.data.getgoodsname)
     }
   })
