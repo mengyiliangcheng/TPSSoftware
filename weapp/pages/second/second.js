@@ -1,4 +1,5 @@
 // pages/tb/tb.js
+
 var app=getApp()
 Page({
   data:{
@@ -69,7 +70,26 @@ addnewgoods:function(){
     phoneNumber: '15002121792' //仅为示例，并非真实的电话号码
 })
   },
-
+  
+onShow: function(options) {
+      // Do something when show.
+      wx.request({
+    url:  'https://32906079.jxggdxw.com:8443/WeappServer/GoodInfo',
+    data: {
+      command:'getgoodsname'
+    },
+    method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+    /*header: {
+     'content-type':'application/json'
+   }, // 设置请求的 header*/
+    success: function(res){
+      // success
+      console.log(res)
+      //console.log(res.data),
+      //console.log(res.data.getgoodsname)
+    }
+  })
+  },
 
   onLoad: function () {
     console.log('onLoad')
