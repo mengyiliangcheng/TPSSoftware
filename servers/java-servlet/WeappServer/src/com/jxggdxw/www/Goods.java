@@ -21,13 +21,11 @@ public class Goods {
 	static String strClassName = Goods.class.getName();  
     static Logger logger = LogManager.getLogger(strClassName);
     
-    private static final String GOODS_SAVE_FILE_TEST = "goods.xml";
-    private static final String GOODS_SAVE_FILE_SERVER = "/usr/local/tomcat/webapps/WeappServer/pic/goods.xml";
-    
-    private static final String GOODS_SAVE_FILE = GOODS_SAVE_FILE_SERVER;
-    
     List<Good> goods = new ArrayList<Good>();
     
+    /**
+     * 
+     * 测试代码*/
     public static void main(String[] args){
     	Good good = new Good();
     	good.setGoodName("aaa");
@@ -85,6 +83,9 @@ public class Goods {
 		return goods;
 	}
 	
+	/**
+	 * 
+	 * 更新goods*/
 	public boolean updateGoods(Good good){
 		boolean flag = false;
 		
@@ -121,6 +122,41 @@ public class Goods {
 		return true;
 	}
 	
+	public List<String> getGoodInfo(String name){
+		List<String> info = new ArrayList<String>();
+		
+		Iterator iter = goods.iterator();
+		while(iter.hasNext()){
+			
+			Good good = (Good) iter.next();
+			if(good.getGoodName().equals(name)){
+				info = good.getGoodInfo();
+				return info;
+			}
+		}
+		
+		logger.error("can not found good info");
+		return null;
+	}
+	
+	public List<String> getGoodsName(){
+		
+		List<String> nameList = new ArrayList<String>();
+		
+		
+		Iterator iter = goods.iterator();
+		while(iter.hasNext()){
+			
+			Good good = (Good)iter.next();
+			nameList.add(good.getGoodName());
+		}
+		
+		return nameList;
+	}
+	
+	/**
+	 * 
+	 * 打印goods*/
 	public String toString(){
 		
 		String str = new String();
@@ -134,9 +170,13 @@ public class Goods {
 		return str;
 	}
 	
+	
+	/**
+	 * 
+	 * 从文件中读取，放到goods中去*/
 	public boolean readGoods(){
 		
-		File file = new File(GOODS_SAVE_FILE);
+		File file = new File(GlobalParam.GOODS_SAVE_FILE);
 		if(!file.exists()){
 			return false;
 		}
@@ -146,7 +186,7 @@ public class Goods {
         try{
         	
     	   DocumentBuilder builder = factory.newDocumentBuilder();
-           doc = builder.parse(GOODS_SAVE_FILE);      
+           doc = builder.parse(GlobalParam.GOODS_SAVE_FILE);      
         }catch(Exception e){
         	logger.error("read goods error " + e.getMessage());
         	return false;
@@ -229,7 +269,7 @@ public class Goods {
 			goodsElem.appendChild(goodElem);
 		}
 		
-		File file = new File(GOODS_SAVE_FILE);
+		File file = new File(GlobalParam.GOODS_SAVE_FILE);
 		if(file.exists()){
 			file.delete();
 		}
@@ -240,7 +280,7 @@ public class Goods {
         TransformerFactory tf = TransformerFactory.newInstance();
         try{
 	        Transformer t = tf.newTransformer();
-	        StreamResult result = new StreamResult(new File(GOODS_SAVE_FILE));
+	        StreamResult result = new StreamResult(new File(GlobalParam.GOODS_SAVE_FILE));
 	        t.transform(source,result);
         }catch(Exception e){
         	logger.error("transformer error： " + e.getMessage());

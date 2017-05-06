@@ -55,6 +55,21 @@ public class Good {
 		return GoodPics;
 	}
 
+	public List<String> getGoodInfo(){
+		
+		List<String> info = new ArrayList<String>();
+		info.add(GoodName);
+		info.add(GoodPrice);
+		info.add(GoodsAbstract);
+		
+		Iterator pics = GoodPics.iterator();
+		while(pics.hasNext()){
+			info.add((String)pics.next());
+		}
+		
+		return info;
+	}
+	
 	public String toString(){
 		
 		String url = new String();

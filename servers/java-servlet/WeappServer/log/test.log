@@ -1,9 +1,11 @@
-23:24:30.135 TRACE com.jxggdxw.www.GoodInfo 39 doGet - doGet start
-23:24:30.148 TRACE com.jxggdxw.www.GoodInfo 61 doGet - doGet over
+16:05:37.659 ERROR com.jxggdxw.www.Goods 286 saveGoods - transformer error： java.io.FileNotFoundException: E:\usr\local\tomcat\webapps\WeappServer\pic\goods.xml (系统找不到指定的路径。)
+16:05:37.663 TRACE com.jxggdxw.www.Goods 43 main - goods over
+16:05:37.664 TRACE com.jxggdxw.www.Goods 45 main - read over
+16:05:37.664 TRACE com.jxggdxw.www.Goods 46 main - name->aaa price->123 abstract:   urls:  url->baidu.com url->nexgo.cn
 
-23:24:56.385 TRACE com.jxggdxw.www.GoodInfo 39 doGet - doGet start
-23:24:56.388 TRACE com.jxggdxw.www.GoodInfo 61 doGet - doGet over
+16:05:37.664 TRACE com.jxggdxw.www.Goods 47 main - toString over
+16:05:37.664 TRACE com.jxggdxw.www.Goods 49 main - add over
+16:05:37.664 TRACE com.jxggdxw.www.Goods 50 main - name->aaa price->123 abstract:   urls:  url->baidu.com url->nexgo.cn url->xgd.cn
 
-23:28:18.190 TRACE com.jxggdxw.www.GoodInfo 39 doGet - doGet start
-23:28:18.191 TRACE com.jxggdxw.www.GoodInfo 61 doGet - doGet over
-
+16:05:37.665 ERROR com.jxggdxw.www.Goods 286 saveGoods - transformer error： java.io.FileNotFoundException: E:\usr\local\tomcat\webapps\WeappServer\pic\goods.xml (系统找不到指定的路径。)
+16:05:37.666 TRACE com.jxggdxw.www.Goods 52 main - save over

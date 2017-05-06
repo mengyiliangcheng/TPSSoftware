@@ -6,6 +6,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,12 +25,6 @@ public class GoodInfo extends HttpServlet {
     //set logger设置日志记录
 	static String strClassName = GoodInfo.class.getName();  
     static Logger logger = LogManager.getLogger(strClassName);
-    
-    private static final String GOODS_SAVE_FILE_TEST = "goods.xml";
-    private static final String GOODS_SAVE_FILE_SERVER = "/usr/local/tomcat/webapps/WeappServer/pic/goods.xml";
-    
-    private static final String GOODS_SAVE_FILE = GOODS_SAVE_FILE_TEST;
-    
 	
 	public GoodInfo(){
 		
@@ -38,7 +35,7 @@ public class GoodInfo extends HttpServlet {
     	
     	logger.trace("doGet start"); 
     	
-    	File file = new File(GOODS_SAVE_FILE);
+    	File file = new File(GlobalParam.GOODS_SAVE_FILE);
     	if(!file.exists()){
             PrintWriter pw = response.getWriter();  
             
@@ -46,17 +43,31 @@ public class GoodInfo extends HttpServlet {
             pw.println("no file!"); 
     	}
     	
-        FileInputStream fileInputStream = new FileInputStream(file);  
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);  
-        byte[] b = new byte[bufferedInputStream.available()];  
-        bufferedInputStream.read(b);  
-        OutputStream outputStream = response.getOutputStream();  
-        outputStream.write(b);  
-        
-        //
-        bufferedInputStream.close();  
-        outputStream.flush();  
-        outputStream.close(); 
+    	
+    	String cmd = request.getParameter(GlobalParam.STR_COMMAND);
+    	logger.trace("command: " + cmd);
+    	if(null == cmd){
+    		return ;
+    	}
+    	switch(cmd){
+    		case GlobalParam.STR_COMMAND_ALL_GOODS:
+    			sendGoodsName(response);
+    			break;
+    			
+    		case GlobalParam.STR_COMMAND_GOOD_INFO:
+    			String name = request.getParameter(GlobalParam.STR_COMMAND_GOOD_NAME);
+    			logger.trace("name->" + name);
+    			sendGoodInfo(name,response);
+    			break;
+    			
+    		default:
+    			logger.error("error cmd");
+    			break;
+    	}
+    	
+    	//sendGoodsName(response);
+    	
+    	//sendGoodInfo("wuuuu",response);
         
         logger.trace("doGet over\r\n");
         
@@ -67,6 +78,74 @@ public class GoodInfo extends HttpServlet {
     
     	logger.trace("doPost start");
     	doGet(request,response);
+    }
+    
+    public void sendGoodInfo(String name,HttpServletResponse response){
+    	
+    	Goods goods = new Goods();
+    	goods.readGoods();
+    	
+    	PrintWriter pw ;
+    	
+    	List<String> info = goods.getGoodInfo(name);
+    	
+    	if(null == info){
+    		info = new ArrayList();
+    		info.add("no good info");
+    	}
+    	try{
+    		pw = response.getWriter();  
+    	}catch(Exception e){
+    		logger.error("sendGoodInfo error" + e.toString());
+    		return ;
+    	}
+    	
+        //回复给客户端一个信息      
+        pw.println(info); 
+    }
+    
+    public void sendGoodsName( HttpServletResponse response){
+    	
+    	Goods goods = new Goods();
+    	
+    	goods.readGoods();
+    	
+    	List<String> nameList = goods.getGoodsName();
+    	PrintWriter pw ;
+    	
+    	try{
+    		pw = response.getWriter();  
+    	}catch(Exception e){
+    		logger.error("sendGoodsName error " + e.toString());
+    		return ;
+    	}
+        
+        //回复给客户端一个信息      
+        pw.println(nameList); 
+    }
+    
+    public  void sendFile(HttpServletResponse response){
+    	
+    	File file = new File(GlobalParam.GOODS_SAVE_FILE);
+
+    	/**
+    	 * 
+    	 * 给client回复文件*/
+    	try{
+	        FileInputStream fileInputStream = new FileInputStream(file);  
+	        BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);  
+	        byte[] b = new byte[bufferedInputStream.available()];  
+	        bufferedInputStream.read(b);  
+	        OutputStream outputStream = response.getOutputStream();  
+	        outputStream.write(b);  
+	        
+	        //
+	        bufferedInputStream.close();  
+	        outputStream.flush();  
+	        outputStream.close(); 
+    	}catch(Exception e){
+    		logger.trace("send file error " + e.toString());
+    	}
     }
     
 }

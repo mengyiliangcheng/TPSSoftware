@@ -32,90 +32,10 @@ public class main extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 	
-	//windows 端文件存放地址
-	private static final String TEMP_DIR_TEST 	= "d:/temp/";
-	private static final String PIC_DIR_TEST  	= "d:/video/";
-	
-	//linux 端文件存放地址
-	private static final String TEMP_DIR_SERVER 	= "/usr/local/tomcat/webapps/WeappServer/temp/";
-	private static final String PIC_DIR_SERVER  	= "/usr/local/tomcat/webapps/WeappServer/pic/";
-	
-	
-	private static final String TEMP_DIR = TEMP_DIR_SERVER; //要在最后加上斜杠:temp/，缓存文件目录,需要在磁盘手动建立temp文件夹，否则不能保存  
-	private static final String PIC_DIR  = PIC_DIR_SERVER;
-	
-	//url基地址
-	private static final String PIC_URL_BASE	= "https://32906079.jxggdxw.com:8443/WeappServer/pic/";
-	private static final String PIC_URL_FILE    = "/usr/local/tomcat/webapps/WeappServer/pic/url.txt";
-	
-	//商品信息字符串常量
-	private static final String STR_GOOD_NAME 	= "goodsname";
-	private static final String STR_GOOD_PRICE	= "goodsprice";
-	private static final String STR_GOOD_ABSTRACT = "goodsabstract";
-	
-	private static final int MAX_TEMP_BUF_SIZE		= 1024 * 512;  //写满该大小的缓存后，存入硬盘中。
-	private static final int MAX_FILE_SIZE 			= 50 * 1024 * 1024;
-	
     //set logger设置日志记录
 	static String strClassName = main.class.getName();  
     static Logger logger = LogManager.getLogger(strClassName);
     
-  /*
-    public void doGet(HttpServletRequest request, HttpServletResponse response)  
-            throws IOException, ServletException { 
-    	test_logger log = new test_logger();
-    	
-    	logger.trace("doGet");
-    	
-    	logger.trace("client IP :"+request.getRemoteHost());
-    	logger.trace("Host IP :" + request.getLocalAddr());
-    	logger.trace("getContentType :" + request.getContentType());
-    	logger.trace("getContentLength :" + request.getContentLength());
-    	logger.trace("getContextPath :" + request.getContextPath());
-    	
-    	// Returns an Enumeration of String objects containing the names of the parameters contained in this request.   
-        Enumeration paramNames = request.getParameterNames();  
-        // Tests if this enumeration contains more elements.   
-        while(paramNames.hasMoreElements()) {  
-            // Returns the next element of this enumeration if this enumeration object has at least one more element to provide.   
-            String paraName = (String)paramNames.nextElement();  
-            logger.trace("paraName: "+paraName);
-            //out.println("<tr><td>" + paraName + "/n<td>");  
-            // Returns an array of String objects containing all of the values the given request parameter has, or null if the parameter does not exist.   
-            // 注意参数paraName（变量）不能加双引号，否则就是找参数名叫paraName的对应值了。  
-            String[] paramValues = request.getParameterValues(paraName);  
-            // 这个参数只有一个值  
-            if(paramValues.length == 1) {  
-                String paramValue = paramValues[0];  
-                if(paramValue.length() == 0) {  
-                   // out.println("<I>no value</I>");  
-                	logger.trace("paramValue: "+"no value");
-                } else {  
-                  //  out.println(paramValue);
-                	logger.trace("paramValue: "+paramValue);
-                }  
-            }else {  
-                // 这个参数有好几条值  
-                //out.println("<UL>");  
-                for(int i = 0; i < paramValues.length; i++) {  
-                   // out.println("<LI>" + paramValues[i]);  
-                	logger.trace("paramValue: "+paramValues[i]);
-                }  
-               // out.println("</UL>");  
-            }  
-        }  
-    	
-    	response.setContentType("text/html");  
-        
-    	  
-        PrintWriter pw = response.getWriter();  
-          
-        //回复给客户端一个信息      
-        pw.println("receive!");  
-
-
-    }  */
-
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     		throws IOException, ServletException{
     	
@@ -134,14 +54,14 @@ public class main extends HttpServlet {
     	goods.readGoods();
     	Good good = new Good();
     	
-    	String tempDirectory = TEMP_DIR;
+    	String tempDirectory = GlobalParam.TEMP_DIR;
         try {    
             File repositoryFile = new File(tempDirectory);  
-            FileItemFactory factory = new DiskFileItemFactory(MAX_TEMP_BUF_SIZE, repositoryFile);  
+            FileItemFactory factory = new DiskFileItemFactory(GlobalParam.MAX_TEMP_BUF_SIZE, repositoryFile);  
             
             ServletFileUpload upload = new ServletFileUpload(factory);  
             upload.setHeaderEncoding("utf-8");  //设置字符编码  
-            upload.setSizeMax(MAX_FILE_SIZE); // 设置最大上传大小 set every upload file'size less than 50M  
+            upload.setSizeMax(GlobalParam.MAX_FILE_SIZE); // 设置最大上传大小 set every upload file'size less than 50M  
             List<FileItem> items = upload.parseRequest(request);   //这里开始执行上传  
             Iterator iter = items.iterator();  
               
@@ -155,11 +75,11 @@ public class main extends HttpServlet {
                     logger.trace("getFieldName: "+item.getFieldName());
                     logger.trace("item: " + item.getString());
                     
-                    if(item.getFieldName().equals(STR_GOOD_NAME)){
+                    if(item.getFieldName().equals(GlobalParam.STR_GOOD_NAME)){
                     	good.setGoodName(item.getString());
-                    }else if(item.getFieldName().equals(STR_GOOD_PRICE)){
+                    }else if(item.getFieldName().equals(GlobalParam.STR_GOOD_PRICE)){
                     	good.setGoodPrice(item.getString());
-                    }else if(item.getFieldName().equals(STR_GOOD_ABSTRACT)){
+                    }else if(item.getFieldName().equals(GlobalParam.STR_GOOD_ABSTRACT)){
                     	good.setGoodAbstract(item.getString());
                     }else{
                     	
@@ -175,13 +95,13 @@ public class main extends HttpServlet {
                     
                     good.setGoodName(fieldName);
 
-                    File uploadedFile = new File(PIC_DIR + fileName);
+                    File uploadedFile = new File(GlobalParam.PIC_DIR + fileName);
                     item.write(uploadedFile);  
                     logger.trace("upload success!");
                     
                     //回复给客户端一个信息      
-                    pw.println(PIC_URL_BASE + fileName);  
-                    good.setGoodPicUrl(PIC_URL_BASE + fileName); 
+                    pw.println(GlobalParam.PIC_URL_BASE + fileName);  
+                    good.setGoodPicUrl(GlobalParam.PIC_URL_BASE + fileName); 
                 }  
             }    
         } catch (Exception e) {  
