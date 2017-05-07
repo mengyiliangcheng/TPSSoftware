@@ -22,7 +22,7 @@ public class Goods {
 	static String strClassName = Goods.class.getName();  
     static Logger logger = LogManager.getLogger(strClassName);
     
-    List<Good> goods = new ArrayList<Good>();
+    static List<Good> goods = null;
     
     /**
      * 
@@ -93,7 +93,10 @@ public class Goods {
 		if(good == null){
 			return false;
 		}
-		
+		if(null == goods){
+			logger.error("goods is null");
+			goods = new ArrayList<Good>();
+		}
 		
 		Iterator<Good> iter = goods.iterator();
 		//logger.trace("goods size " + goods.size());
@@ -200,7 +203,13 @@ public class Goods {
 		
 		File file = new File(GlobalParam.GOODS_SAVE_FILE);
 		if(!file.exists()){
+			logger.error("file is not exit");
+			goods = new ArrayList<Good>();
 			return false;
+		}
+		if(null != goods){
+			logger.trace("goods is exist , no need to read");
+			return true;
 		}
 		
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

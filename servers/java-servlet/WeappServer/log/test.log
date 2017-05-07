@@ -1,29 +1,3 @@
-21:59:41.862 TRACE com.jxggdxw.www.main 42 doGet - doGet start
-21:59:41.873 TRACE com.jxggdxw.www.main 45 doGet - doGet over
-
-22:00:01.695 TRACE com.jxggdxw.www.main 51 doPost - doPost start 
-22:00:01.783 TRACE com.jxggdxw.www.main 78 doPost - get field name£∫goodsname
-22:00:01.785 TRACE com.jxggdxw.www.main 82 doPost - value: aaaaa
-22:00:01.787 TRACE com.jxggdxw.www.main 78 doPost - get field name£∫goodsprice
-22:00:01.788 TRACE com.jxggdxw.www.main 82 doPost - value: 8989988
-22:00:01.790 TRACE com.jxggdxw.www.main 78 doPost - get field name£∫goodsabstract
-22:00:01.790 TRACE com.jxggdxw.www.main 82 doPost - value: ∫»ÀÆ
-22:00:01.791 TRACE com.jxggdxw.www.main 99 doPost - fieldName: aaaaa
-22:00:01.791 TRACE com.jxggdxw.www.main 100 doPost - filename: tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ53c78b7668c8b42205b986a9153d587d.jpg
-22:00:01.792 TRACE com.jxggdxw.www.main 106 doPost - upload success!
-22:00:01.792 TRACE com.jxggdxw.www.main 118 doPost - upload good: name->aaaaa price->8989988 abstract: ∫»ÀÆ urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ53c78b7668c8b42205b986a9153d587d.jpg
-
-22:00:01.807 TRACE com.jxggdxw.www.Goods 309 saveGoods - save over
-22:00:01.807 TRACE com.jxggdxw.www.main 124 doPost - doGet over
-
-22:01:54.033 TRACE com.jxggdxw.www.GoodInfo 95 doPost - doPost start
-22:01:54.033 TRACE com.jxggdxw.www.GoodInfo 39 doGet - doGet start
-22:01:54.035 ERROR com.jxggdxw.www.GoodInfo 62 doGet - command: getgoodinfo
-22:01:54.035 TRACE com.jxggdxw.www.GoodInfo 75 doGet - name->—¿À¢
-22:01:54.046 TRACE com.jxggdxw.www.Goods 245 readGoods - read success: [name->aaaaa price->8989988 abstract: ∫»ÀÆ urls:  url->https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ53c78b7668c8b42205b986a9153d587d.jpg
-]
-22:01:54.046 TRACE com.jxggdxw.www.Goods 133 getGoodInfoJson - good name: aaaaa
-22:01:54.047 TRACE com.jxggdxw.www.Goods 134 getGoodInfoJson - name: —¿À¢
-22:01:54.048 ERROR com.jxggdxw.www.Goods 141 getGoodInfoJson - can not found good info
-22:01:54.061 TRACE com.jxggdxw.www.GoodInfo 88 doGet - doGet over
+15:01:43.798 TRACE com.jxggdxw.www.main 41 doGet - doGet start
+15:01:43.806 TRACE com.jxggdxw.www.main 44 doGet - doGet over
 

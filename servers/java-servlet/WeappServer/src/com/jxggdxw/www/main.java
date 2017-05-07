@@ -27,7 +27,6 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload; 
 
 @WebServlet("/main")
-
 public class main extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -48,7 +47,7 @@ public class main extends HttpServlet {
     @Override  
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
     
-    	logger.trace("doPost start ");
+    	logger.error("doPost start ");
     	
     	Goods goods = new Goods();
     	goods.readGoods();
