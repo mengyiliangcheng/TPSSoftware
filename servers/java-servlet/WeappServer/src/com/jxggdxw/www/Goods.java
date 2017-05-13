@@ -28,6 +28,44 @@ public class Goods {
      * 
      * 测试代码*/
     public static void main(String[] args){
+    	
+    	//DatabaseUtils db = new DatabaseUtils("mengyi");
+    	//db.checkDriver();
+    	//db.createDatabase();
+    	
+    	GoodDatabase db = new GoodDatabase();
+    	//db.deleteTable();
+    	//db.createTable();
+    	db.queryTable();
+    	/*
+    	db.deleteTable();
+    	db.createTable();
+    	
+    	Good good = new Good();
+    	good.setGoodName("张三");
+    	good.setGoodPrice("123");
+    	good.setGoodPicUrl("baidu.com");
+    	good.setGoodPicUrl("nexgo.cn");
+    	good.setGoodAbstract("abstract");
+    	db.insertTable(good);
+    	
+    	Good good2 = new Good();
+    	good2.setGoodName("李四");
+    	good2.setGoodPicUrl("xgd.cn");
+    	db.insertTable(good2);
+    	
+    	
+    	db.queryTable();
+    	
+    	//db.queryUrls("张三");
+    	Good good3 = new Good();
+    	good3.setGoodName("张三");
+    	good3.setGoodPicUrl("apple.cn");
+    	db.updateUrl(good3);
+    	
+    	db.queryTable();
+    	*/
+    	/*
     	Good good = new Good();
     	good.setGoodName("张三");
     	good.setGoodPrice("123");
@@ -51,6 +89,7 @@ public class Goods {
     	logger.trace(myGoods.toString());
     	myGoods.saveGoods();
     	logger.trace("save over");
+    	*/
     }
     
     public Goods(){

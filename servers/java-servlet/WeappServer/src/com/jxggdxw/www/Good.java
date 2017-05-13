@@ -8,6 +8,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Good {
@@ -56,6 +57,40 @@ public class Good {
 	public List<String> getGoodPicUrls(){
 		return GoodPics;
 	}
+	
+	public JSONObject getGoodPicUrlsJson(){
+		JSONArray json = new JSONArray();
+		JSONObject jurl = new JSONObject();
+		
+		try{
+			json = getGoodPicUrlsJsonObj();
+			jurl.put("urls",json);
+		}catch(Exception e){
+			logger.error("getGoodPicUrlsJson error " + e.toString());
+			return null;
+		}
+		
+		return jurl;
+	}
+	
+	public JSONArray getGoodPicUrlsJsonObj(){
+		JSONArray jurls = new JSONArray();
+		JSONObject jurl ;
+		Iterator iter = GoodPics.iterator();
+		while(iter.hasNext()){
+			String url = (String)iter.next();
+			jurl = new JSONObject();;
+			try{
+			jurl.put("url", url);
+			}catch(JSONException e){
+				logger.error("getGoodPicUrlsJsonObj error " + e.toString());
+				return null;
+			}
+			jurls.put(jurl);
+		}
+		return jurls;
+	}
+	
 
 	public List<String> getGoodInfo(){
 		

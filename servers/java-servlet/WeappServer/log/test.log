@@ -1,3 +1,2 @@
-15:01:43.798 TRACE com.jxggdxw.www.main 41 doGet - doGet start
-15:01:43.806 TRACE com.jxggdxw.www.main 44 doGet - doGet over
-
+15:44:32.738 TRACE com.jxggdxw.www.GoodDatabase 304 queryTable - tttt 43534 werwer {"urls":[{"url":"https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ418eb36f478f2959a3d918cdf27cddcc.jpg"},{"url":"https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ1ce021a20059094fb71d51c9a249e6ec.jpg"}]}
+15:44:32.746 TRACE com.jxggdxw.www.GoodDatabase 304 queryTable - ppiii 43534 werwer {"urls":[{"url":"https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ3d1776cc0d17d0605e418fd5b8c13482.jpg"},{"url":"https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ26c8df71cda27828e6aeb30ec33a4d55.jpg"},{"url":"https://32906079.jxggdxw.com:8443/WeappServer/pic/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ930a70fc06691e70b35a59e5c4cd6460.jpg"}]}
