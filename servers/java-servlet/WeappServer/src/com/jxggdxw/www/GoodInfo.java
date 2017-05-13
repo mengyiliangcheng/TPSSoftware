@@ -129,6 +129,8 @@ public class GoodInfo extends HttpServlet {
     	
     	Goods goods = new Goods();
     	goods.readGoods();
+    	//GoodDatabase db = new GoodDatabase();
+    	//JSONObject j = db.getGoodsInfo();
     	
     	PrintWriter pw ;
     	
@@ -136,12 +138,14 @@ public class GoodInfo extends HttpServlet {
     	response.setHeader("content-type","text/html;charset=GB2312");
     	response.setCharacterEncoding("GB2312");
     	
+    	
     	List<String> info = goods.getGoodInfo(name);
     	
     	if(null == info){
     		info = new ArrayList();
     		info.add("no good info");
     	}
+    	
     	try{
     		pw = response.getWriter();  
     	}catch(Exception e){
@@ -155,11 +159,12 @@ public class GoodInfo extends HttpServlet {
     
 public void sendGoodsNameJson( HttpServletResponse response){
     	
+
     	Goods goods = new Goods();
-    	
     	goods.readGoods();
-    	
     	List<String> nameList = goods.getGoodsName();
+    	
+		
     	PrintWriter pw ;
     	response.setHeader("content-type","text/html;charset=GB2312");
     	response.setCharacterEncoding("GB2312");

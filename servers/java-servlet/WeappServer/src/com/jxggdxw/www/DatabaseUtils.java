@@ -114,7 +114,7 @@ public class DatabaseUtils implements DBInterface{
         //调用DriverManager对象的getConnection()方法，获得一个Connection对象
         Connection conn;
         try {
-            conn = DriverManager.getConnection(url,    "root","pp@265358");
+            conn = DriverManager.getConnection(url,"root","pp@265358");
             //创建一个Statement对象
 
             Statement stmt = conn.createStatement(); //创建Statement对象
