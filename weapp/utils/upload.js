@@ -1,6 +1,6 @@
 //图片上传函数
-var uploadurl='https://32906079.jxggdxw.com:8443/WeappServer/main'
-
+var uploadurl='https://32906079.jxggdxw.com:8443/WeappServer/UploadGood'
+//var uploadurl='http://localhost:8080/WeappServer/main'
 function upload (Goodsname,localfilepath){
    wx.uploadFile({
      url:uploadurl,  //开发者服务器URL

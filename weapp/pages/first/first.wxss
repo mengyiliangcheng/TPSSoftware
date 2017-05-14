@@ -15,17 +15,13 @@
 .userinfo-nickname {
   color:  crimson;
 }
-.userinfo-nickname1 {
-  width: 128rpx;
-  height: 128rpx;
-  color: orchid;
-}
 
 .usermotto {
   width: 400rpx;
   height: 400rpx;
   margin-top: 120px;
 }
-.usermo {
-  margin-top: 210px;
+
+.buttoncolor {
+  background-color: gainsboro;
 }

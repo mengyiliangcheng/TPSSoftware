@@ -5,6 +5,6 @@
     <text class="userinfo-nickname">{{"TPS汽车服务"}}</text> 
   </view>
   <view  bindtap="bindViewTap" class="usermotto">
-    <button >点击进入</button>
+    <button class="buttoncolor">点击进入</button>
   </view>
 </view>

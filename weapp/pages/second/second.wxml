@@ -1,49 +1,24 @@
 <!--pages/tb/tb.wxml-->
-<view  bindtap="photo" class="userinfo-avatar2">
-      <image class="userinfo-avatar" src="{{'http://32906079.jxggdxw.com/picture/6.png'}}" background-size="cover"></image> 
-      <text class="userstyle-motto">{{motto1}}</text>
+<view >
+<view wx:for="{{Goodsinfo}}" bindtap="goodsview" 
+id="{{index}}"   
+class="userinfo-avatar2">
+<view wx:for="{{item}}" >  
+ <image wx:if="{{index == 0}}" class="userinfo-avatar" src="{{item}}"  background-size="cover"></image>
+<text class="userstyle-motto" wx:if="{{index == 1}}">{{item}} </text>
 </view>
-<view class="userinfo-avatar3">
-<button open-type="contact">客服咨询</button>
-     <button bindtap="callphone">电话咨询</button>
 </view>
-<view  bindtap="photo1" class="userinfo-avatar2">
-      <image class="userinfo-avatar" src="{{'http://32906079.jxggdxw.com/picture/7.png'}}" background-size="cover"></image> 
-      <text class="userstyle-motto">{{motto2}}</text>  
-</view>
-<view class="userinfo-avatar3">
-<button open-type="contact">客服咨询</button>
-     <button bindtap="callphone">电话咨询</button>
-</view>
-<view  bindtap="photo1" class="userinfo-avatar2">
-      <image class="userinfo-avatar" src="{{'http://32906079.jxggdxw.com/picture/8.png'}}" background-size="cover"></image> 
-      <text class="userstyle-motto">{{motto3}}</text>  
-</view>
-<view class="userinfo-avatar3">
-     <button open-type="contact">客服咨询</button>
-     <button bindtap="callphone">电话咨询</button>
-</view>
-     
-
-
-<view  bindtap="photo1" class="userinfo-avatar2">
-      <image class="userinfo-avatar" src="{{'http://32906079.jxggdxw.com/picture/9.png'}}" background-size="cover"></image> 
-      <text class="userstyle-motto">{{motto3}}</text>  
-</view>
-<view class="userinfo-avatar3">
-    <button open-type="contact">客服咨询</button>
-     <button bindtap="callphone">电话咨询</button>
-</view>
-
-<view class="userinfo-avatar3" >
-      <button bindtap="addnewgoods">点击添加新商品</button>
   </view>   
-  <view wx:if="{{userInfo.nickName=='Forest'}}"class="userinfo-avatar3" >
-      <button bindtap="addnewgoods">点击添加新商品</button>
-  </view>  
-  <view wx:if="{{userInfo.nickName=='Forest'}}"class="userinfo-avatar3" >
-      <button bindtap="addnewgoods">点击添加新商品</button>
-  </view>    
+<view class="userinfo-avatar3">
+<button open-type="contact"class="buttoncolor">客服咨询</button>
+     <button bindtap="callphone"class="buttoncolor">电话咨询</button>
+</view>
+<view class="userinfo-avatar3" >
+      <button bindtap="addnewgoods"class="buttoncolor1">点击添加新商品</button>
+  </view> 
+<view class="userinfo-avatar3" >
+      <button bindtap="deletegoods"class="buttoncolor1">点击删除商品</button>
+  </view>      
   
 
 

@@ -1,0 +1,12 @@
+<!--pages/five/five.wxml-->
+
+ <checkbox-group bindchange="checkboxChange">
+  <label  wx:for="{{goodsname}}" ><view class="userinfo-avatar">
+    <checkbox value="{{index}}"  checked="{{item.checked}}"/>{{item}} </view>
+  </label>
+</checkbox-group>
+
+
+<view class="userinfo-avatar3">
+<button bindtap="complete">完 成</button>
+</view>

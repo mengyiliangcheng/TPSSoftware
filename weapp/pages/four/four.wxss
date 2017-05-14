@@ -1,0 +1,14 @@
+/* pages/four/four.wxss */
+.userinfo-avatar {
+  width: 100% ;
+  align-items: center;
+}
+.userinfo-avatar3 {
+  display: flex;
+  align-items: center;
+  height: 140rpx;
+  flex-direction: row;
+}
+.buttoncolor {
+  background-color:lawngreen;
+}
