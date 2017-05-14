@@ -92,6 +92,39 @@ public class GoodDatabase extends DatabaseUtils{
 		return true;
 	}
 	
+	public boolean deleteGood(String name){
+		if(null == name){
+			return true;
+		}
+		
+		if(!queryGood(name)){  //如果商品不存在则插入
+			return true;
+		}
+		
+		String sql;
+		//数据库更新数据
+		sql = "delete from " + GOODS_TABLE_NAME ;
+		sql += " where name=\'" + name + "\'";
+		
+		logger.trace("sql " + sql.toString());
+		
+    	Statement stmt;
+    	Connection conn;
+    	try{
+    		conn = DriverManager.getConnection(DatabaseUtils.JDBC_URL,DatabaseUtils.DB_USER_NAME,DatabaseUtils.DB_USER_PWD);
+    		stmt = conn.createStatement();
+    		stmt.executeUpdate(sql);
+    		
+    		stmt.close();
+    		conn.close();
+    	}catch(SQLException e){
+    		logger.error("deleteGood error " + e.toString());
+        	return false;
+        }
+		return true;
+		
+	}
+	
 	public boolean updateGood(Good good){
 		
 		if(good.getGoodName().equals(" ")){

@@ -36,18 +36,10 @@ public class DownloadInfo extends HttpServlet {
             //回复给客户端一个信息      
             pw.println("no file!"); 
     	}
-        //PrintWriter pw = response.getWriter();  
-        
-        //response.setHeader("content-type","text/html;charset=UTF-8");
-        //response.setCharacterEncoding("GB2312");
-        //回复给客户端一个信息      
-        //pw.println("中文!"); 
-    	
-    	//Map<String,String[]> data = request.getParameterMap();
-    	//logger.trace(data.toString());
     	
     	//sendGoodsNameJson(response);
     	//sendGoodInfoJson("中文",response);
+    	//sendGoodsInfoJson(response);
     	
     	String cmd = request.getParameter(GlobalParam.STR_COMMAND);
     	logger.error("command: " + cmd);
@@ -67,6 +59,13 @@ public class DownloadInfo extends HttpServlet {
     			sendGoodInfoJson(name,response);
     			break;
     			
+    		case GlobalParam.STR_COMMAND_GOODS_INFO:
+    			//String name = request.getParameter(GlobalParam.STR_COMMAND_GOOD_NAME);
+    			//name = new String(name.getBytes("iso8859-1"),"utf-8");
+    			//logger.trace("name->" + name);
+    			sendGoodsInfoJson(response);
+    			break;
+    			
     		default:
     			logger.error("error cmd");
     			break;
@@ -82,6 +81,26 @@ public class DownloadInfo extends HttpServlet {
     
     	logger.trace("doPost start");
     	doGet(request,response);
+    }
+    
+    public void sendGoodsInfoJson(HttpServletResponse response){
+    	GoodDatabase db = new GoodDatabase();
+    	db.checkDriver();
+    	JSONObject json = db.getGoodsInfo();
+    	
+    	PrintWriter pw ;
+    	response.setHeader("content-type","text/html;charset=GB2312");
+    	response.setCharacterEncoding("GB2312");
+    	try{
+    		pw = response.getWriter();  
+    	}catch(Exception e){
+    		logger.error("sendGoodsName error " + e.toString());
+    		return ;
+    	}
+    	
+    	logger.trace("json string: " + json.toString());
+        //回复给客户端一个信息      
+        pw.println(json.toString()); 
     }
     
     public void sendGoodInfoJson(String name,HttpServletResponse response){

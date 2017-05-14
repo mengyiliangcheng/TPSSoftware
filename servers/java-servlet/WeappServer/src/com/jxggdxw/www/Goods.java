@@ -38,8 +38,9 @@ public class Goods {
     	//db.deleteTable();
     	//db.createTable();
     	//db.queryTable();
-    	JSONObject j = db.getGoodsInfo();
-    	logger.trace(j.toString());
+    	//JSONObject j = db.getGoodsInfo();
+    	//logger.trace(j.toString());
+    	db.deleteGood("tttt");
     	/*
     	db.deleteTable();
     	db.createTable();

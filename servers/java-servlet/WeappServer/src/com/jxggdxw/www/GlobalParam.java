@@ -23,9 +23,10 @@ public class GlobalParam {
 	public static final String STR_GOOD_ABSTRACT = "goodsabstract";
 	
 	//命令字常量
-	public static final String STR_COMMAND		= "command";
+	public static final String STR_COMMAND					= "command";
 	public static final String STR_COMMAND_ALL_GOODS		= "getgoodsname";
 	public static final String STR_COMMAND_GOOD_INFO		= "getgoodinfo";
+	public static final String STR_COMMAND_GOODS_INFO		= "getgoodsinfo";
 	public static final String STR_COMMAND_GOOD_NAME		= "name";
 	
 	//buf常量

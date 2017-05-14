@@ -45,7 +45,7 @@ private static final long serialVersionUID = 1L;
     	//Goods goods = new Goods();
     	//goods.readGoods();
     	GoodDatabase db = new GoodDatabase();
-    	db.checkDriver();
+    	
     	Good good = new Good();
     	Good goodpic = null;
     	
@@ -98,14 +98,19 @@ private static final long serialVersionUID = 1L;
                     logger.trace("filename: " + fileName);
                     
                     goodpic.setGoodName(fieldName);
+                    
+                    ToolUtils tool = new ToolUtils();
+                    tool.makeDirs(GlobalParam.PIC_DIR, fieldName);
 
-                    File uploadedFile = new File(GlobalParam.PIC_DIR + fileName);
+                    String picPath = GlobalParam.PIC_DIR + fieldName + "/" + fileName;
+                    File uploadedFile = new File(picPath);
                     item.write(uploadedFile);  
                     logger.trace("upload success!");
                     
                     //回复给客户端一个信息      
-                    pw.println(GlobalParam.PIC_URL_BASE + fileName);  
-                    goodpic.setGoodPicUrl(GlobalParam.PIC_URL_BASE + fileName); 
+                    String url = GlobalParam.PIC_URL_BASE + fieldName + "/" + fileName;
+                    pw.println(url);  
+                    goodpic.setGoodPicUrl(url); 
                 }  
             }    
         } catch (Exception e) {  
@@ -123,4 +128,13 @@ private static final long serialVersionUID = 1L;
         
         logger.trace("doGet over\r\n");
     }  
+    
+    
+    public void init() throws ServletException
+    {
+    	System.out.println("init..");
+    	GoodDatabase db = new GoodDatabase();
+    	db.checkDriver();
+    	db.createTable();
+    }
 }
