@@ -6,7 +6,8 @@ var newgoodsname
 var goodsname
 var newgoodsprice
 var newgoodsabstract
-var uploadurl='https://32906079.jxggdxw.com:8443/WeappServer/main'
+var uploadurl ='https://32906079.jxggdxw.com:8443/WeappServer/UploadGood'
+//var uploadurl='http://localhost:8080/WeappServer/main'
 Page({
   data:{},
   newgoodsname:function(e){
@@ -73,6 +74,17 @@ addpicture:function(){
     })
       
     }
+      })
+    },
+    complete:function(){
+      wx.showLoading({
+        title: '加载中',
+      })
+      setTimeout(function () {
+        wx.hideLoading()
+      }, 1000)
+      wx.redirectTo({       //跳转到tb页面
+        url: '../first/first',
       })
     }
 })

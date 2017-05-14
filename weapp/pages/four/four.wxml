@@ -1,0 +1,7 @@
+<!--pages/four/four.wxml-->
+<image wx:for="{{Goodsurl}}" class="userinfo-avatar" src="{{item}}"background-size="cover" mode="aspectFit"></image>
+
+<view class="userinfo-avatar3">
+<button open-type="contact"class= "buttoncolor">客服咨询</button>
+     <button bindtap="callphone"class= "buttoncolor">电话咨询</button>
+</view>

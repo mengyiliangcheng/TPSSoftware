@@ -1,0 +1,16 @@
+/* pages/five/five.wxss */
+.userinfo-avatar {
+  height: 60rpx;
+  width: 100%;
+  display: flex;
+  
+}
+.userinfo-avatar2 {
+  flex-direction:row;
+}
+.userinfo-avatar3 {
+  display: flex;
+  align-items: center;
+  height: 140rpx;
+  flex-direction:row;
+}

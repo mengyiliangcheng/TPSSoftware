@@ -1,0 +1,28 @@
+21:43:26.735 TRACE com.jxggdxw.www.DatabaseUtils 37 checkDriver - check driver ok 
+21:43:27.004 ERROR com.jxggdxw.www.GoodDatabase 40 createTable - createTable error com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Table 'goods' already exists
+21:43:27.006 TRACE com.jxggdxw.www.UploadGood 34 doGet - doGet start
+21:43:27.006 TRACE com.jxggdxw.www.UploadGood 36 doGet - doGet over
+
+21:43:54.622 ERROR com.jxggdxw.www.UploadGood 43 doPost - doPost start 
+21:43:54.720 TRACE com.jxggdxw.www.UploadGood 75 doPost - get field name£ºgoodsname
+21:43:54.721 TRACE com.jxggdxw.www.UploadGood 79 doPost - value: ioio
+21:43:54.722 TRACE com.jxggdxw.www.UploadGood 75 doPost - get field name£ºgoodsprice
+21:43:54.722 TRACE com.jxggdxw.www.UploadGood 79 doPost - value: 3442
+21:43:54.723 TRACE com.jxggdxw.www.UploadGood 75 doPost - get field name£ºgoodsabstract
+21:43:54.724 TRACE com.jxggdxw.www.UploadGood 79 doPost - value: werwerwer
+21:43:54.725 TRACE com.jxggdxw.www.UploadGood 97 doPost - fieldName: ioio
+21:43:54.727 TRACE com.jxggdxw.www.UploadGood 98 doPost - filename: tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ2a4cccbd9df76c103eff48399755ed10.jpg
+21:43:54.730 TRACE com.jxggdxw.www.ToolUtils 30 makeDirs - filepath = d:/video/ioio
+21:43:54.752 TRACE com.jxggdxw.www.UploadGood 108 doPost - upload success!
+21:43:54.753 TRACE com.jxggdxw.www.UploadGood 121 doPost - upload good: name->ioio price->3442 abstract: werwerwer urls: 
+
+21:43:54.829 TRACE com.jxggdxw.www.GoodDatabase 76 insertTable - insertSql insert into Goods values(1, 'ioio','3442','werwerwer','{"urls":[]}')
+21:43:54.975 TRACE com.jxggdxw.www.GoodDatabase 91 insertTable - insertTable success 
+21:43:55.012 TRACE com.jxggdxw.www.GoodDatabase 252 queryUrls - 1 ioio {"urls":[]}
+21:43:55.013 TRACE com.jxggdxw.www.GoodDatabase 260 queryUrls - jurl:{"urls":[]}
+21:43:55.014 TRACE com.jxggdxw.www.GoodDatabase 198 updateUrl - find url
+21:43:55.014 TRACE com.jxggdxw.www.GoodDatabase 203 updateUrl - jurl:{"urls":[]}
+21:43:55.015 TRACE com.jxggdxw.www.GoodDatabase 204 updateUrl - jarray:[]
+21:43:55.015 TRACE com.jxggdxw.www.GoodDatabase 221 updateUrl - sql update Goods set urls='{"urls":[{"url":"https://32906079.jxggdxw.com:8443/WeappServer/pic/ioio/tmp_1151195543o6zAJs6hgGxml8RNsWk9Rp1swzxQ2a4cccbd9df76c103eff48399755ed10.jpg"}]}' where name='ioio'
+21:43:55.147 TRACE com.jxggdxw.www.UploadGood 129 doPost - doGet over
+
