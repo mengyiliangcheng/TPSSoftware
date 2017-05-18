@@ -94,10 +94,12 @@ public class GoodDatabase extends DatabaseUtils{
 	
 	public boolean deleteGood(String name){
 		if(null == name){
+			logger.error("good name is null");
 			return true;
 		}
 		
 		if(!queryGood(name)){  //如果商品不存在则插入
+			logger.warn("good is not exist");
 			return true;
 		}
 		
@@ -123,6 +125,20 @@ public class GoodDatabase extends DatabaseUtils{
         }
 		return true;
 		
+	}
+	
+	public JSONObject deleteGoodJson(String name){
+		JSONObject json = new JSONObject();
+		try{
+			if(deleteGood(name)){
+				json.put("ret", "success");
+			}else{
+				json.put("ret", "fail");
+			}
+		}catch(JSONException e){
+			logger.error("json error " + e.toString());
+		}
+		return json;
 	}
 	
 	public boolean updateGood(Good good){

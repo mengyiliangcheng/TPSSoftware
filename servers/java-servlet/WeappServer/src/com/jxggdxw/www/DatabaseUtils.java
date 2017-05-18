@@ -9,7 +9,7 @@ public class DatabaseUtils implements DBInterface{
 
 	public static final String DB_USER_NAME = "root";
 	public static final String DB_USER_PWD  = "pp@265358";
-	public static final String JDBC_URL="jdbc:mysql://localhost:3306/mysql";    //JDBCµÄURL
+	public static final String JDBC_URL="jdbc:mysql://localhost:3306/mysql?useUnicode=true&characterEncoding=utf-8";    //JDBCµÄURL
 	public static final String DABASE_URL = "jdbc:mysql://localhost:3306/elvis?useUnicode=true&characterEncoding=utf-8";
     private String tableName;
     private Connection conn;

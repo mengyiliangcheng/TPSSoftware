@@ -18,6 +18,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONObject;
 
 
 @WebServlet("/UploadGood")
@@ -62,6 +63,8 @@ private static final long serialVersionUID = 1L;
             List<FileItem> items = upload.parseRequest(request);   //这里开始执行上传  
             Iterator iter = items.iterator();  
               
+            response.setHeader("content-type","text/html;charset=GB2312");
+            response.setCharacterEncoding("GB2312");
             PrintWriter pw = response.getWriter();  
             
             while (iter.hasNext()) {  
@@ -99,17 +102,23 @@ private static final long serialVersionUID = 1L;
                     
                     goodpic.setGoodName(fieldName);
                     
+                    String folderName = String.valueOf(fieldName.hashCode());
+                    logger.trace("hash value = " + folderName);
+                    
                     ToolUtils tool = new ToolUtils();
-                    tool.makeDirs(GlobalParam.PIC_DIR, fieldName);
+                    tool.makeDirs(GlobalParam.PIC_DIR, folderName);
 
-                    String picPath = GlobalParam.PIC_DIR + fieldName + "/" + fileName;
+
+                    String picPath = GlobalParam.PIC_DIR + folderName + "/" + fileName;
                     File uploadedFile = new File(picPath);
                     item.write(uploadedFile);  
                     logger.trace("upload success!");
                     
                     //回复给客户端一个信息      
-                    String url = GlobalParam.PIC_URL_BASE + fieldName + "/" + fileName;
-                    pw.println(url);  
+                    String url = GlobalParam.PIC_URL_BASE + folderName + "/" + fileName;
+                    JSONObject json = new JSONObject();
+                    json.put("url", url);
+                    pw.println(json.toString());  
                     goodpic.setGoodPicUrl(url); 
                 }  
             }    

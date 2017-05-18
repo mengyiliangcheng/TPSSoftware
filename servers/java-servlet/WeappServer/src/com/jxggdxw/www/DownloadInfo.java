@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 
@@ -66,6 +67,13 @@ public class DownloadInfo extends HttpServlet {
     			sendGoodsInfoJson(response);
     			break;
     			
+    		case  GlobalParam.STR_COMMAND_GOOD_DEL:
+    			String del_name = request.getParameter(GlobalParam.STR_COMMAND_GOOD_NAME);
+    			name = new String(del_name.getBytes("GB2312"),"utf-8");
+    			logger.trace("name->" + del_name);
+    			delGoodInfo(del_name,response);
+    			break;
+    			
     		default:
     			logger.error("error cmd");
     			break;
@@ -81,6 +89,38 @@ public class DownloadInfo extends HttpServlet {
     
     	logger.trace("doPost start");
     	doGet(request,response);
+    }
+    
+    public void delGoodInfo(String name,HttpServletResponse response){
+    	GoodDatabase db = new GoodDatabase();
+    	db.checkDriver();
+    	JSONObject json = db.deleteGoodJson(name);
+    	try{
+	    	if(json.getString("ret").equals("success")){
+                String folderName = String.valueOf(name.hashCode());
+                logger.trace("hash value = " + folderName);
+                
+	    		ToolUtils tool = new ToolUtils();
+	    		boolean b = tool.DeleteFolder(GlobalParam.PIC_DIR,folderName);
+	    		logger.trace("delete file = " + b);
+	    	}
+    	}catch(JSONException e){
+    		logger.error(e.toString());
+    	}
+    	
+    	PrintWriter pw ;
+    	response.setHeader("content-type","text/html;charset=GB2312");
+    	response.setCharacterEncoding("GB2312");
+    	try{
+    		pw = response.getWriter();  
+    	}catch(Exception e){
+    		logger.error("sendGoodsName error " + e.toString());
+    		return ;
+    	}
+    	
+    	logger.trace("json string: " + json.toString());
+        //回复给客户端一个信息      
+        pw.println(json.toString()); 
     }
     
     public void sendGoodsInfoJson(HttpServletResponse response){
