@@ -1,7 +1,6 @@
 // pages/tb/tb.js
 var requsturl = 'https://32906079.jxggdxw.com:8443/WeappServer/DownloadInfo'
 var GoodsName='';
-
 //var motto=new Array();
 var app=getApp();
 var namess=''
@@ -17,13 +16,12 @@ Page({
       Goodsinfo: app.data.GoodsInfo,
       Goodsname: app.data.GoodsName
     })
-<<<<<<< HEAD
      console.log(this.data.Goodsinfo)
      console.log(this.data.Goodsname)
-=======
+
     console.log(this.data.Goodsinfo)
     console.log(this.data.Goodsname)
->>>>>>> 44dd433c1e2a711cd7eabc31a72abe5c5711637d
+
   },
 addnewgoods:function(){
     wx.showLoading({
