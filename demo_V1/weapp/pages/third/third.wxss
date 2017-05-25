@@ -1,0 +1,87 @@
+/* pages/third/third.wxss */
+.main{
+  width: 100%;
+  direction: row;
+}
+.goodsname{
+  width: 99%;
+  height: 80rpx;
+  margin-top: 10rpx;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius: 15rpx;
+  border-top-style:solid;
+  border-right-style:solid;
+  border-bottom-style:solid;
+  border-left-style:solid;
+  border-width:1rpx;
+  border-color:gainsboro;
+}
+.goodsabstract{
+  width: 99%;
+  height: 300rpx;
+  margin-top: 10rpx;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius: 15rpx;
+  border-top-style:solid;
+  border-right-style:solid;
+  border-bottom-style:solid;
+  border-left-style:solid;
+  border-width:1rpx;
+  border-color:gainsboro;
+}
+.goodsabstract1{
+  width: 99%;
+  height: 150rpx;
+  margin-top: 10rpx;
+  margin-left:auto;
+  margin-right:auto;
+  border-radius: 15rpx;
+  border-top-style:solid;
+  border-right-style:solid;
+  border-bottom-style:solid;
+  border-left-style:solid;
+  border-width:1rpx;
+  border-color:gainsboro;
+}
+.input-goodsname{
+  padding-top: 15rpx;
+}
+.image-mian{
+  width: 99%;
+  height: 750rpx;
+   margin-top: 10rpx;
+  border-radius: 15rpx;
+  border-top-style:solid;
+  border-right-style:solid;
+  border-bottom-style:solid;
+  border-left-style:solid;
+  border-width:1rpx;
+  border-color:gainsboro;
+  
+}
+.mian-image{
+   width: 98%;
+   column-count: 3
+}
+.image{
+  width:100%;
+  height: 200rpx;
+  padding-left: 8rpx;
+}
+.button1{
+  padding-top: 10rpx;
+  width: 90%;
+  padding-left: 5%;
+}
+.button2{
+  padding-top: 10rpx;
+  width: 40%;
+  padding-left: 30%;
+  padding-bottom: 20rpx;
+ 
+}
+.button-color{
+   background-color:  lime
+}

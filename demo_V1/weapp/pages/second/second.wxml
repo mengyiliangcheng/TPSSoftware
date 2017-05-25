@@ -1,0 +1,39 @@
+<!--pages/tb/tb.wxml-->
+<view wx:for="{{goodsinfo}}" bindtap="goodsview"  id="{{index}}" >
+   <view class="main">
+   <view class="image-main">
+      <image src="{{item.goodsurl}}" class="image" ></image></view>
+      <view class="text">
+         <view >
+            <text  class="goodname">{{item.goodsname}}</text></view>
+         <view class="text-goodabstrac">
+             <text  class="goodabstract">{{item.goodsabstract}}     </text></view>
+          <view class="text-goodprice">
+              <text class="goodprice">¥{{item.goodsprice}}</text></view>
+       </view>
+    </view>
+</view>
+
+<view class="userinfo-avatar3" >
+      <button bindtap="addnewgoods"class="buttoncolor1">点击添加新商品</button>
+</view> 
+   
+<view class="userinfo-avatar3" >
+      <button bindtap="deletegoods"class="buttoncolor1">点击删除商品</button>
+  </view> 
+  <view class="KK"></view>
+
+ <view class="main1">
+<view class="userinfo-avatar4">
+<button open-type="contact"class= "buttoncolor2">客服咨询</button>
+     <button bindtap="callphone"class= "buttoncolor2">电话咨询</button>
+</view>
+</view>    
+  
+
+
+
+
+
+
+

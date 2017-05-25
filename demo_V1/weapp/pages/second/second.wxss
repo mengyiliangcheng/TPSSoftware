@@ -1,0 +1,96 @@
+/* pages/tb/tb.wxss */
+.userinfo-avatar3 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 140rpx;
+  flex-direction: row;
+}
+.buttoncolor {
+ 
+  background-color:lawngreen;
+}
+.buttoncolor1 {
+   width: 400rpx;
+  background-color: red;
+}
+.main{
+  display: flex;
+  width: 100%;
+  height: 251rpx;
+  direction: column; 
+  border-top-style:none;
+  border-right-style:none;
+  border-bottom-style:solid;
+  border-left-style:none;
+  border-width:1rpx;
+  border-color:gainsboro;
+}
+.good{
+  width: 100%;
+  direction: column;
+}
+.image-main{
+  width: 350rpx;
+  height: 250rpx;
+}
+.image{
+   width: 350rpx;
+   height: 250rpx;
+}
+.text{
+    margin-top:20rpx;
+    direction: row;
+}
+.text-goodname{
+    margin-top:0rpx;
+    direction: row;
+}
+.goodname{
+   padding-left: 40rpx;
+   font-size: 45rpx;
+}
+.text-goodabstrac{
+    margin-top:10rpx;
+    direction: row;
+}
+.goodabstract{
+   padding-left: 40rpx;
+   color:  darkgrey;
+   font-size: 35rpx;
+}
+.text-goodprice{
+    margin-top:80rpx;
+}
+.goodprice{
+   margin-left: 40rpx;
+   font-size: 40rpx;
+   color: red;
+}
+.main1{
+    direction: row;
+    padding-top: 10rpx;
+    position: fixed;
+    bottom: 0px;
+    height: 90rpx;
+    line-height: 90rpx;
+    width: 100%;
+    background-color: white;  
+}
+.userinfo-avatar4 {
+  display: flex;
+  align-items: center;
+  height: 80rpx;
+  flex-direction: row;
+  padding-bottom: 10rpx;
+}
+.buttoncolor2 {
+  background-color:lawngreen;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+}
+.KK{
+  height: 100rpx;
+  width: 100%;
+}
