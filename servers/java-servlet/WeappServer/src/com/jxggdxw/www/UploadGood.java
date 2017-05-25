@@ -1,38 +1,32 @@
 package com.jxggdxw.www;
 
-import java.io.BufferedOutputStream;
-import java.io.FileOutputStream;
+import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.io.PrintWriter;
-import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;  
-import javax.servlet.http.HttpServletRequest;  
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONObject;
 
-import java.io.File;  
-import java.util.Iterator;  
-import java.util.List;  
 
-import org.apache.commons.fileupload.FileItem;  
-import org.apache.commons.fileupload.FileItemFactory;  
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;  
-import org.apache.commons.fileupload.servlet.ServletFileUpload; 
-
-@WebServlet("/main")
-public class main extends HttpServlet {
-
-	private static final long serialVersionUID = 1L;
+@WebServlet("/UploadGood")
+public class UploadGood extends HttpServlet {
+private static final long serialVersionUID = 1L;
 	
     //set logger设置日志记录
-	static String strClassName = main.class.getName();  
+	static String strClassName = UploadGood.class.getName();  
     static Logger logger = LogManager.getLogger(strClassName);
     
     public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -40,18 +34,23 @@ public class main extends HttpServlet {
     	
     	logger.trace("doGet start"); 
     	
-        
         logger.trace("doGet over\r\n");
         
     }
+    
     @Override  
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {  
     
     	logger.error("doPost start ");
     	
-    	Goods goods = new Goods();
-    	goods.readGoods();
+    	//Goods goods = new Goods();
+    	//goods.readGoods();
+    	GoodDatabase db = new GoodDatabase();
+    	
     	Good good = new Good();
+    	Good goodpic = null;
+    	
+    	boolean flag = false;
     	
     	String tempDirectory = GlobalParam.TEMP_DIR;
         try {    
@@ -64,6 +63,8 @@ public class main extends HttpServlet {
             List<FileItem> items = upload.parseRequest(request);   //这里开始执行上传  
             Iterator iter = items.iterator();  
               
+            response.setHeader("content-type","text/html;charset=GB2312");
+            response.setCharacterEncoding("GB2312");
             PrintWriter pw = response.getWriter();  
             
             while (iter.hasNext()) {  
@@ -89,24 +90,36 @@ public class main extends HttpServlet {
                     }else{
                     	
                     }
+                    flag = true;
                     
                 }else {    //file
-                	
+                	goodpic = new Good();
                 	String fieldName = item.getFieldName();  //获取表单域name属性的值  
                     String fileName = item.getName();  		//返回文件名
                     
                     logger.trace("fieldName: " + fieldName);
                     logger.trace("filename: " + fileName);
                     
-                    good.setGoodName(fieldName);
+                    goodpic.setGoodName(fieldName);
+                    
+                    String folderName = String.valueOf(fieldName.hashCode());
+                    logger.trace("hash value = " + folderName);
+                    
+                    ToolUtils tool = new ToolUtils();
+                    tool.makeDirs(GlobalParam.PIC_DIR, folderName);
 
-                    File uploadedFile = new File(GlobalParam.PIC_DIR + fileName);
+
+                    String picPath = GlobalParam.PIC_DIR + folderName + "/" + fileName;
+                    File uploadedFile = new File(picPath);
                     item.write(uploadedFile);  
                     logger.trace("upload success!");
                     
                     //回复给客户端一个信息      
-                    pw.println(GlobalParam.PIC_URL_BASE + fileName);  
-                    good.setGoodPicUrl(GlobalParam.PIC_URL_BASE + fileName); 
+                    String url = GlobalParam.PIC_URL_BASE + folderName + "/" + fileName;
+                    JSONObject json = new JSONObject();
+                    json.put("url", url);
+                    pw.println(json.toString());  
+                    goodpic.setGoodPicUrl(url); 
                 }  
             }    
         } catch (Exception e) {  
@@ -116,9 +129,11 @@ public class main extends HttpServlet {
         
         logger.trace("upload good: " + good.toString());
         
-        goods.updateGoods(good);
         
-        goods.saveGoods();
+        //将数据更新到数据库
+        db.updateGood(good);
+        
+        db.updateUrl(goodpic);
         
         logger.trace("doGet over\r\n");
     }  
@@ -127,12 +142,8 @@ public class main extends HttpServlet {
     public void init() throws ServletException
     {
     	System.out.println("init..");
+    	GoodDatabase db = new GoodDatabase();
+    	db.checkDriver();
+    	db.createTable();
     }
-    
-    public void destory()
-    {
-    	System.out.println("destory..");
-    	
-    }
-
 }

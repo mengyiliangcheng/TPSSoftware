@@ -2,6 +2,8 @@ package com.jxggdxw.www;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.w3c.dom.*;
 
 import java.io.File;
@@ -21,20 +23,61 @@ public class Goods {
 	static String strClassName = Goods.class.getName();  
     static Logger logger = LogManager.getLogger(strClassName);
     
-    List<Good> goods = new ArrayList<Good>();
+    static List<Good> goods = null;
     
     /**
      * 
      * 测试代码*/
     public static void main(String[] args){
+    	
+    	//DatabaseUtils db = new DatabaseUtils("mengyi");
+    	//db.checkDriver();
+    	//db.createDatabase();
+    	
+    	GoodDatabase db = new GoodDatabase();
+    	//db.deleteTable();
+    	//db.createTable();
+    	//db.queryTable();
+    	//JSONObject j = db.getGoodsInfo();
+    	//logger.trace(j.toString());
+    	db.deleteGood("tttt");
+    	/*
+    	db.deleteTable();
+    	db.createTable();
+    	
     	Good good = new Good();
-    	good.setGoodName("aaa");
+    	good.setGoodName("张三");
+    	good.setGoodPrice("123");
+    	good.setGoodPicUrl("baidu.com");
+    	good.setGoodPicUrl("nexgo.cn");
+    	good.setGoodAbstract("abstract");
+    	db.insertTable(good);
+    	
+    	Good good2 = new Good();
+    	good2.setGoodName("李四");
+    	good2.setGoodPicUrl("xgd.cn");
+    	db.insertTable(good2);
+    	
+    	
+    	db.queryTable();
+    	
+    	//db.queryUrls("张三");
+    	Good good3 = new Good();
+    	good3.setGoodName("张三");
+    	good3.setGoodPicUrl("apple.cn");
+    	db.updateUrl(good3);
+    	
+    	db.queryTable();
+    	*/
+    	/*
+    	Good good = new Good();
+    	good.setGoodName("张三");
     	good.setGoodPrice("123");
     	good.setGoodPicUrl("baidu.com");
     	good.setGoodPicUrl("nexgo.cn");
     	
     	Good good2 = new Good();
-    	good2.setGoodName("aaa");
+    	good2.setGoodName("李四");
     	good2.setGoodPicUrl("xgd.cn");
     	
     	Goods myGoods = new Goods();
@@ -50,6 +93,7 @@ public class Goods {
     	logger.trace(myGoods.toString());
     	myGoods.saveGoods();
     	logger.trace("save over");
+    	*/
     }
     
     public Goods(){
@@ -92,7 +136,10 @@ public class Goods {
 		if(good == null){
 			return false;
 		}
-		
+		if(null == goods){
+			logger.error("goods is null");
+			goods = new ArrayList<Good>();
+		}
 		
 		Iterator<Good> iter = goods.iterator();
 		//logger.trace("goods size " + goods.size());
@@ -122,6 +169,25 @@ public class Goods {
 		return true;
 	}
 	
+	public JSONArray getGoodInfoJson(String name){
+		JSONArray json ;
+		
+		Iterator iter = goods.iterator();
+		while(iter.hasNext()){
+			
+			Good good = (Good) iter.next();
+			logger.trace("good name: " + good.getGoodName());
+			logger.trace("name: " + name);
+			if(good.getGoodName().equals(name)){
+				json = good.getGoodInfoJson();
+				return json;
+			}
+		}
+		
+		logger.error("can not found good info");
+		return null;
+	}
+	
 	public List<String> getGoodInfo(String name){
 		List<String> info = new ArrayList<String>();
 		
@@ -129,6 +195,8 @@ public class Goods {
 		while(iter.hasNext()){
 			
 			Good good = (Good) iter.next();
+			logger.trace("good name: " + good.getGoodName());
+			logger.trace("name: " + name);
 			if(good.getGoodName().equals(name)){
 				info = good.getGoodInfo();
 				return info;
@@ -178,7 +246,13 @@ public class Goods {
 		
 		File file = new File(GlobalParam.GOODS_SAVE_FILE);
 		if(!file.exists()){
+			logger.error("file is not exit");
+			goods = new ArrayList<Good>();
 			return false;
+		}
+		if(null != goods){
+			logger.trace("goods is exist , no need to read");
+			return true;
 		}
 		
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -217,13 +291,10 @@ public class Goods {
             }catch(Exception e){
             	logger.error("read goods error: " + "list i: " + i + " info: " + e.getMessage());
             	
-            }
-            
-            logger.trace(good.toString());
-            
+            }  
             goods.add(good);
         }
-        
+        logger.trace("read success: "+goods.toString());
 		return true;
 	}
 	

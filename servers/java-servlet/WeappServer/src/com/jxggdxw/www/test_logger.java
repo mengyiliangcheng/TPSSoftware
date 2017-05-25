@@ -11,6 +11,10 @@ public class test_logger {
 	public static void main(String[] args){
 		System.out.println("hello");;
 		
+		String str = new String("你好");
+		
+		logger.trace(str);
+		
     	logger.trace("entry");
     	logger.warn("除数不能为0.");
     	logger.error("除数不能为0.");

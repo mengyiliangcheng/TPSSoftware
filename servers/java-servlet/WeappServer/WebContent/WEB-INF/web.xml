@@ -19,7 +19,7 @@
 <servlet-mapping>  
 <servlet-name>main</servlet-name>  
 <url-pattern>/main</url-pattern>  
-</servlet-mapping>  -->
+</servlet-mapping>   -->
 
  
 <context-param>

@@ -41,9 +41,9 @@ addpicture:function(){
             'content-type':'application/json' 
          },
          formData: {           //除了上传文件以外，其他的上传信息
-            goodsname:newgoodsname,
-            goodsprice:newgoodsprice,
-            goodsabstract:newgoodsabstract,
+           goodsname:encodeURI(newgoodsname),
+           goodsprice:encodeURI(newgoodsprice),
+           goodsabstract:encodeURI(newgoodsabstract),
           },
            name: newgoodsname,    //上传文件所对应的key
          success: function(uploadRes){
