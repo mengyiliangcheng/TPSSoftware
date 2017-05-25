@@ -29,7 +29,12 @@ Page({
      'content-type':'application/x-www-form-urlencoded'
    }, // 设置请求的 header
     success: function(res){ 
+<<<<<<< HEAD
+      console.log(res)
+      //console.log(res.data.goods.length)
+=======
       console.log(res.data.goods.length)
+>>>>>>> 44dd433c1e2a711cd7eabc31a72abe5c5711637d
       that.data.Goodsname.splice(0,that.data.Goodsname.length)
       that.data.Goodsinfo.splice(0, that.data.Goodsinfo.length)
       for (var i = 0; i < res.data.goods.length;i++){
