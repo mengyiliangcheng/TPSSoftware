@@ -1,2 +1,7 @@
 *.js
 *.js
+servers/java-servlet/WeappServer/logs/app.log
+*.log
+*.log
+servers/java-servlet/WeappServer/log/test.log
+*.js
