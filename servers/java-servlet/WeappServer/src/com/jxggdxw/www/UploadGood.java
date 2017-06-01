@@ -3,6 +3,7 @@ package com.jxggdxw.www;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
 import java.util.Iterator;
 import java.util.List;
 
@@ -80,6 +81,8 @@ private static final long serialVersionUID = 1L;
                     String itemvalue = item.getString();
                     itemvalue = new String(itemvalue.getBytes("iso8859-1"),"utf-8");
                     logger.trace("value: " + itemvalue);
+                    itemvalue = URLDecoder.decode(itemvalue,"utf-8");
+                    logger.trace("decode = " + itemvalue);
                     
                     if(item.getFieldName().equals(GlobalParam.STR_GOOD_NAME)){
                     	good.setGoodName(itemvalue);
@@ -100,6 +103,9 @@ private static final long serialVersionUID = 1L;
                     logger.trace("fieldName: " + fieldName);
                     logger.trace("filename: " + fileName);
                     
+                    fieldName = URLDecoder.decode(fieldName,"utf-8");
+                    logger.trace("decode fieldName = " + fieldName);
+
                     goodpic.setGoodName(fieldName);
                     
                     String folderName = String.valueOf(fieldName.hashCode());

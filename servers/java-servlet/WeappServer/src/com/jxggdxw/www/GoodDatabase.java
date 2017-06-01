@@ -1,5 +1,6 @@
 package com.jxggdxw.www;
 
+import java.net.URLEncoder;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -433,6 +434,73 @@ public class GoodDatabase extends DatabaseUtils{
     	
     	
     	return jGoodInfo;
+	}
+	
+	public JSONObject getGoodsInfoEncode() throws JSONException{
+		Statement stmt;
+    	Connection conn;
+    	JSONArray json = null;
+    	JSONArray jGoodInfoArray,jGoodInfoArrays = new JSONArray() ;
+    	JSONObject jurl,jGoodInfo,jGoodsInfo = new JSONObject();
+    	try{
+    		
+    		conn = DriverManager.getConnection(DatabaseUtils.JDBC_URL,DatabaseUtils.DB_USER_NAME,DatabaseUtils.DB_USER_PWD);
+    		stmt = conn.createStatement();
+	        ResultSet result = stmt.executeQuery("select * from Goods");
+	        while (result.next())
+	        {
+	        	logger.trace(result.getString("name") + " " + result.getString("price") + " " 
+	        + result.getString("abstract") + " "+ result.getString("urls"));
+	        	String url = result.getString("urls");
+	        	jGoodInfo = new JSONObject();
+	        	try {
+	        		jGoodInfoArray = new JSONArray();
+	        		JSONObject tmp = new JSONObject();
+	        		String name = URLEncoder.encode(result.getString("name"), "utf-8");
+		        	tmp.put("name", name);
+		        	jGoodInfoArray.put(tmp);
+		        	
+		        	tmp = new JSONObject();
+		        	tmp.put("price", result.getString("price"));
+		        	jGoodInfoArray.put(tmp);
+		        	
+		        	tmp = new JSONObject();
+		        	String abs = URLEncoder.encode(result.getString("abstract"), "utf-8");
+		        	tmp.put("abstract", abs);
+		        	jGoodInfoArray.put(tmp);
+		        	
+	        		//得到json对象
+	        		jurl = new JSONObject(url);
+	        		//取到其中的json数组
+	        		json = (JSONArray)jurl.get("urls");
+					//logger.trace("jurl:" + jurl.toString());
+					//logger.trace("json:" + json.toString());
+	        		
+	        		jGoodInfoArray.put(jurl);
+	        		//jGoodsInfo.put("good",jGoodInfoArray );
+	        		jGoodInfoArrays.put(jGoodInfoArray);
+		        	
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					logger.error("JSONArray error " + e.toString());
+					e.printStackTrace();
+				}
+	        	
+	        }
+	        
+	        try{
+	        	jGoodsInfo.put("goods", jGoodInfoArrays);
+	        }catch(JSONException e){
+	    		logger.error("jGoodsInfo error " + e.toString());
+	    		return null;
+	        }
+	        
+    	}catch(SQLException e){
+    		logger.error("queryTable error " + e.toString());
+    		return null;
+        }
+    	
+    	return jGoodsInfo;
 	}
 	
 	public JSONObject getGoodsInfo(){

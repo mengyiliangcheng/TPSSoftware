@@ -7,7 +7,7 @@ var goodsname
 var newgoodsprice
 var newgoodsabstract
 var uploadurl ='https://32906079.jxggdxw.com:8443/WeappServer/UploadGood'
-//var uploadurl='http://localhost:8080/WeappServer/main'
+//var uploadurl ='http://localhost:8080/WeappServer/UploadGood'
 Page({
   data:{},
   newgoodsname:function(e){
@@ -41,9 +41,9 @@ addpicture:function(){
             'content-type':'application/json' 
          },
          formData: {           //除了上传文件以外，其他的上传信息
-            goodsname:newgoodsname,
-            goodsprice:newgoodsprice,
-            goodsabstract:newgoodsabstract,
+            goodsname:encodeURI(newgoodsname),
+            goodsprice:encodeURI(newgoodsprice),
+            goodsabstract:encodeURI(newgoodsabstract),
           },
            name: newgoodsname,    //上传文件所对应的key
          success: function(uploadRes){

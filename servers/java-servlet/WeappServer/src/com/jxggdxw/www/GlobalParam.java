@@ -28,6 +28,7 @@ public class GlobalParam {
 	public static final String STR_COMMAND_GOOD_INFO		= "getgoodinfo";
 	public static final String STR_COMMAND_GOODS_INFO		= "getgoodsinfo";
 	public static final String STR_COMMAND_GOOD_NAME		= "name";
+	public static final String STR_COMMANDS_GOOD_NAME		= "names";
 	public static final String STR_COMMAND_GOOD_DEL			= "delgoodinfo";
 	
 	//buf³£Á¿
