@@ -20,11 +20,12 @@ public class GoodDatabase extends DatabaseUtils{
 
 	public GoodDatabase(String tableName) {
 		super(tableName);
-		// TODO Auto-generated constructor stub
 	}
 	public GoodDatabase(){
 		super();
 	}
+	
+	
 	
 	public boolean createTable(){
     	Statement stmt;
@@ -32,7 +33,11 @@ public class GoodDatabase extends DatabaseUtils{
     	try{
     		conn = DriverManager.getConnection(DatabaseUtils.JDBC_URL,DatabaseUtils.DB_USER_NAME,DatabaseUtils.DB_USER_PWD);
     		stmt = conn.createStatement();
-    		stmt.executeUpdate("create table Goods(id int, name varchar(80),price varchar(12),abstract varchar(200),urls varchar(20000))");
+    		String sql = "create table Goods"
+    				+ "(id int, name varchar(80),price varchar(12),abstract varchar(200),"
+    				+ "models varchar(100),bonus varchar(200),param varchar(200),serial varchar(100),"
+    				+ "recommand varchar(100), urls varchar(20000))";
+    		stmt.executeUpdate(sql);
     		
     		stmt.close();
     		conn.close();
@@ -74,6 +79,7 @@ public class GoodDatabase extends DatabaseUtils{
 		sql = "insert into " + GOODS_TABLE_NAME + " values(";
 		sql += "1," + " \'" + good.getGoodName() + "\'," + "\'" + good.getGoodPrice() + "\'," + 
 		"\'" + good.getGoodsAbstract() + "\'," + "\'" + good.getGoodPicUrlsJson() + "\')";
+		
 		logger.trace("insertSql " + sql.toString());
 		
     	Statement stmt;
@@ -379,6 +385,64 @@ public class GoodDatabase extends DatabaseUtils{
     		return null;
         }
     	return jNamesInfo;
+	}
+	
+	public JSONObject getGoodInfoEncode(String name){
+		Statement stmt;
+    	Connection conn;
+    	JSONArray json = null , jgood = new JSONArray();
+    	JSONObject jurl = null , jGoodInfo = new JSONObject();
+    	try{
+    		
+    		conn = DriverManager.getConnection(DatabaseUtils.JDBC_URL,DatabaseUtils.DB_USER_NAME,DatabaseUtils.DB_USER_PWD);
+    		stmt = conn.createStatement();
+    		String sql = "select * from Goods where name = \'" + name + "\'"; 
+	        ResultSet result = stmt.executeQuery(sql);
+	        while (result.next())
+	        {
+	        	logger.trace(result.getInt("id") + " " + result.getString("name") + " " + result.getString("urls"));
+	        	String url = result.getString("urls");
+	        
+	        	try {
+	        		//得到json对象
+	        		jurl = new JSONObject(url);
+	        		//取到其中的json数组
+	        		json = (JSONArray)jurl.get("urls");
+					logger.trace("jurl:" + jurl.toString());
+					//logger.trace("json:" + json.toString());
+					
+		        	JSONObject jtmp = new  JSONObject();
+		        	String name1 = URLEncoder.encode(result.getString("name"), "utf-8");
+		        	jtmp.put("name", name1);
+		        	
+		        	jgood.put(jtmp);
+		        	
+		        	jtmp = new  JSONObject();
+		        	jtmp.put("price", result.getString("price"));
+		        	jgood.put(jtmp);
+		        	
+		        	jtmp = new  JSONObject();
+		        	String abs = URLEncoder.encode(result.getString("abstract"), "utf-8");
+		        	jtmp.put("abstract", abs);
+		        	jgood.put(jtmp);
+		        	
+		        	jgood.put(jurl);
+		        	
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					logger.error("JSONArray error " + e.toString());
+					e.printStackTrace();
+				}
+	        	
+	        }
+	        jGoodInfo.put("good", jgood);
+    	}catch(Exception e){
+    		logger.error("queryUrls error " + e.toString());
+    		return null;
+        }
+    	
+    	
+    	return jGoodInfo;
 	}
 	
 	public JSONObject getGoodInfo(String name){

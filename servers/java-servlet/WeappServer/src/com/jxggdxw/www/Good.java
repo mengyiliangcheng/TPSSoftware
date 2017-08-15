@@ -17,6 +17,12 @@ public class Good {
 	private String GoodPrice = " ";
 	private List<String> GoodPics = new ArrayList();
 	private String GoodsAbstract = " ";
+	private GoodModel[] GoodModels = null ;
+	private String GoodBonusInfo = "";
+	private String GoodDetailParam = "";
+	private String GoodSerial = "";
+	private String[] GoodRecmd = null;
+	
 	
 	static String strClassName = Good.class.getName();  
     static Logger logger = LogManager.getLogger(strClassName);
@@ -27,6 +33,61 @@ public class Good {
     
 	public Good(String GoodName){
 		setGoodName(GoodName);
+	}
+
+	public ArrayList<String> getParamList(){
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("GoodName");
+		list.add("GoodPrice");
+		list.add("GoodsAbstract");
+		list.add("GoodModels");
+		list.add("GoodBonusInfo");
+		list.add("GoodDetailParam");
+		list.add("GoodSerial");
+		list.add("GoodRecmd");
+		list.add("GoodPics");
+		
+		return list;
+	}
+	
+	public GoodModel[] getGoodModels() {
+		return GoodModels;
+	}
+
+	public void setGoodModels(GoodModel[] goodModels) {
+		GoodModels = goodModels;
+	}
+
+	public String getGoodBonusInfo() {
+		return GoodBonusInfo;
+	}
+
+	public void setGoodBonusInfo(String goodBonusInfo) {
+		GoodBonusInfo = goodBonusInfo;
+	}
+
+	public String getGoodDetailParam() {
+		return GoodDetailParam;
+	}
+
+	public void setGoodDetailParam(String goodDetailParam) {
+		GoodDetailParam = goodDetailParam;
+	}
+
+	public String getGoodSerial() {
+		return GoodSerial;
+	}
+
+	public void setGoodSerial(String goodSerial) {
+		GoodSerial = goodSerial;
+	}
+
+	public String[] getGoodRecmd() {
+		return GoodRecmd;
+	}
+
+	public void setGoodRecmd(String[] goodRecmd) {
+		GoodRecmd = goodRecmd;
 	}
 
 	public void setGoodName(String GoodName){
@@ -146,6 +207,8 @@ public class Good {
 			url += " url->"+ iter.next();
 		}
 		
-		return ("name->"+GoodName + " price->" + GoodPrice + " abstract: " + GoodsAbstract +" urls: " + url + "\r\n");
+		return ("name->"+GoodName + " price->" + GoodPrice + "BonusInfo->" + GoodBonusInfo
+				 + "GoodDetailParam->" + GoodDetailParam + "GoodSerial->" + GoodSerial 
+				 + "GoodModels->" + GoodModels.toString() +" urls: " + url + "\r\n");
 	}
 }

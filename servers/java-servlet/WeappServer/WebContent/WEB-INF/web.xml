@@ -12,13 +12,13 @@
   <!--定义控制器 -->  
 
 <!-- <servlet>  
-<servlet-name>main</servlet-name>  
-<servlet-class>com.jxggdxw.www.main</servlet-class>  
+<servlet-name>Consult</servlet-name>  
+<servlet-class>com.jxggdxw.www.Consult</servlet-class>  
 </servlet> 
  
 <servlet-mapping>  
-<servlet-name>main</servlet-name>  
-<url-pattern>/main</url-pattern>  
+<servlet-name>Consult</servlet-name>  
+<url-pattern>/Consult</url-pattern>  
 </servlet-mapping>   -->
 
  

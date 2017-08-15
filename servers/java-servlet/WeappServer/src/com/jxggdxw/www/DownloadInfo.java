@@ -1,12 +1,9 @@
 package com.jxggdxw.www;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
-import java.util.Enumeration;
-import java.util.Map;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -23,7 +20,11 @@ import org.json.JSONObject;
 
 @WebServlet("/DownloadInfo")
 public class DownloadInfo extends HttpServlet {
-    //set logger设置日志记录
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//set logger设置日志记录
 	static String strClassName = GoodInfo.class.getName();  
     static Logger logger = LogManager.getLogger(strClassName);
     
@@ -54,8 +55,9 @@ public class DownloadInfo extends HttpServlet {
     		case GlobalParam.STR_COMMAND_GOOD_INFO:
     			String name = request.getParameter(GlobalParam.STR_COMMAND_GOOD_NAME);
     			name = new String(name.getBytes("iso8859-1"),"utf-8");
+    			name = URLDecoder.decode(name,"utf-8");
     			logger.trace("name->" + name);
-    			sendGoodInfoJson(name,response);
+    			sendGoodInfoJsonEncode(name,response);
     			break;
     			
     		//下发所有商品信息
@@ -189,6 +191,26 @@ public class DownloadInfo extends HttpServlet {
         //回复给客户端一个信息      
         pw.println(json.toString()); 
         
+    }
+    
+    public void sendGoodInfoJsonEncode(String name,HttpServletResponse response){
+    	GoodDatabase db = new GoodDatabase();
+    	db.checkDriver();
+    	JSONObject json = db.getGoodInfoEncode(name);
+    	
+    	PrintWriter pw ;
+    	response.setHeader("content-type","text/html;charset=GB2312");
+    	response.setCharacterEncoding("GB2312");
+    	try{
+    		pw = response.getWriter();  
+    	}catch(Exception e){
+    		logger.error("sendGoodsName error " + e.toString());
+    		return ;
+    	}
+    	
+    	logger.trace("json string: " + json.toString());
+        //回复给客户端一个信息      
+        pw.println(json.toString()); 
     }
     
     public void sendGoodInfoJson(String name,HttpServletResponse response){

@@ -1,6 +1,7 @@
 package com.jxggdxw.www;
 
 import java.io.File;
+import java.security.MessageDigest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -116,5 +117,29 @@ public class ToolUtils {
             return false;  
         }  
     } 
+    
+    public String SHAHashing(String src){
+    	MessageDigest md = null;
+    	try{
+    		
+    		md = MessageDigest.getInstance("SHA-1");
+    		md.update(src.getBytes());
+        }catch(Exception e){
+        	logger.trace("SHAHashing "+e.toString());
+        	return null;
+        }
+
+        byte byteData[] = md.digest();
+        
+        //convert the byte to hex format method 1
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+         sb.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+        }
+
+        System.out.println("Hex format : " + sb.toString());
+        
+        return sb.toString();
+    }
 
 }

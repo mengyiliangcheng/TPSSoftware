@@ -31,6 +31,21 @@ public class GlobalParam {
 	public static final String STR_COMMANDS_GOOD_NAME		= "names";
 	public static final String STR_COMMAND_GOOD_DEL			= "delgoodinfo";
 	
+	//客服验证
+	public static final String STR_SIGNATURE				= "signature";
+	public static final String STR_TIMESTAMP				= "timestamp";
+	public static final String STR_NONCE					= "nonce";
+	public static final String STR_ECHOSTR					= "echostr";
+	
+	//客服消息
+	public static final String STR_TOUSERNAME				= "ToUserName";
+	public static final String STR_FROMNAME					= "FromUserName";
+	public static final String STR_CREATETIME				= "CreateTime";
+	public static final String STR_MSGTYPE					= "MsgType";
+	public static final String STR_CONTENT					= "Content";
+	public static final String STR_MSGID					= "MsgId";
+	
+	
 	//buf常量
 	public static final int MAX_TEMP_BUF_SIZE		= 1024 * 512;  //写满该大小的缓存后，存入硬盘中。
 	public static final int MAX_FILE_SIZE 			= 50 * 1024 * 1024;
