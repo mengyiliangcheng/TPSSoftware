@@ -23,6 +23,10 @@ public class GlobalParam {
 	public static final String STR_GOOD_ABSTRACT = "goodsabstract";
 	
 	//ÃüÁî×Ö³£Á¿
+	public static final String STR_TARGET					= "target";
+	public static final String STR_TARGET_DOWNLOAD			= "download";
+	public static final String STR_TARGET_UPLOAD            = "upload";
+	
 	public static final String STR_COMMAND					= "command";
 	public static final String STR_COMMAND_ALL_GOODS		= "getgoodsname";
 	public static final String STR_COMMAND_GOOD_INFO		= "getgoodinfo";

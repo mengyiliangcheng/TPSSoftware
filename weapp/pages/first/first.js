@@ -1,6 +1,7 @@
 //index.js
 //获取应用实例
-var requsturl='https://32906079.jxggdxw.com:8443/WeappServer/DownloadInfo'
+//var requsturl='https://32906079.jxggdxw.com:8443/WeappServer/DownloadInfo'
+var requsturl = 'http://localhost:8080/WeappServer/MainService'
 var app = getApp()
 var A=[1,2,3,4,5]
 var GoodsName=new Array()
@@ -22,14 +23,21 @@ Page({
     wx.request({
     url: requsturl ,
     data: {
-      command:'getgoodsinfo' 
+      target:'download',
+      command:'getgoodsname' ,
     },
     method: 'POST', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
     header: {
      'content-type':'application/x-www-form-urlencoded'
    }, // 设置请求的 header
     success: function(res){ 
-      console.log(res.data.goods.length)
+      console.log('page 1 success')
+      console.log('length:' + res.data.length )
+      console.log('data ' + res.data)
+      //console.log('data ' + res.data.id)
+
+
+
       that.data.Goodsname.splice(0,that.data.Goodsname.length)
       that.data.Goodsinfo.splice(0, that.data.Goodsinfo.length)
       for (var i = 0; i < res.data.goods.length;i++){
@@ -38,7 +46,7 @@ Page({
           res.data.goods[i][1].price + '\n排 量：' + res.data.goods[i][2].abstract]); 
         
       }
-      console.log(that.data.Goodsname)
+      console.log('name'+that.data.Goodsname)
       console.log(that.data.Goodsinfo)
       app.data.GoodsInfo = that.data.Goodsinfo
       app.data.GoodsName = that.data.Goodsname
@@ -63,6 +71,7 @@ setTimeout(function(){
   },
   onLoad: function () {
     console.log('onLoad')
+    console.log('hello')
     var that = this
     //调用应用实例的方法获取全局数据
     app.getUserInfo(function(userInfo){

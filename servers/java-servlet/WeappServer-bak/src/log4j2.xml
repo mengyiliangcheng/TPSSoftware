@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="false" xmlns:log4j="http://jakarta.apache.org/log4j/">
+ 
+<!-- ==========================自定义输出格式说明================================ -->
+<!-- [%d{yyyy-MM-dd HH:mm:ss,SSS} %r %-5p] %m [%c:%l:%L]\n -->
+<!-- %p 输出优先级，即DEBUG，INFO，WARN，ERROR，FATAL -->
+<!-- %r 输出自应用启动到输出该log信息耗费的毫秒数 -->
+<!-- %c 类的全名 -->
+<!-- %t 输出产生该日志事件的线程名 -->
+<!-- %n 输出一个回车换行符 -->
+<!-- %d 2012-01-01 00:00:00,000 -->
+<!-- %L 输出所在类 行数 -->
+<!-- %l 输出日志事件的发生位置，包括类目名、发生的线程，以及在代码中的行数。举例：Testlog4.main(TestLog4.java:10) -->
+<!-- ========================================================================== -->
+ 
+<!-- ==========================输出方式说明===================================== -->
+<!-- framework提供的appender有以下几种: -->
+<!-- org.apache.log4j.ConsoleAppender(控制台), -->
+<!-- org.apache.log4j.FileAppender(文件), -->
+<!-- org.apache.log4j.RollingFileAppender(每天产生一个日志文件), -->
+<!-- org.apache.log4j.RollingFileAppender(文件大小到达指定尺寸的时候产生一个新的文件), -->
+<!-- org.apache.log4j.WriterAppender(将日志信息以流格式发送到任意指定的地方) -->
+<!-- ========================================================================== -->
+ 
+<!-- ==========================日志文件说明===================================== -->
+<!-- 1.默认日志级别是debug -->
+<!-- 2.控制台只输出info,error级别数据 -->
+<!-- 3.日志文件分三个级别：info,debug,error 分别记录：详情信息,普通信息,错误信息 -->
+<!-- ========================================================================== -->
+ 
+<!-- appender的配置信息 -->
+<!-- 控制台 -->
+<appender name="framework_console" class="org.apache.log4j.ConsoleAppender">
+<param name="Target" value="System.out" />
+<param name="ImmediateFlush" value="true" />
+<layout class="org.apache.log4j.PatternLayout">
+<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss,SSS} %r %-5p] %m [%c:%l:%L]\n" />
+</layout>
+<filter class="org.apache.log4j.varia.LevelRangeFilter">
+<param name="LevelMin" value="INFO" />
+<param name="LevelMax" value="ERROR" />
+</filter>
+</appender>
+ 
+<!-- 详细日志 debug、INFO -->
+<appender name="framework_debug" class="org.apache.log4j.RollingFileAppender">
+<param name="File" value="./frameworkDebug.log" />
+<param name="Append" value="true" />
+<param name="encoding" value="UTF-8" />
+<param name="maxFileSize" value="20MB" />
+<param name="maxBackupIndex" value="10" />
+<layout class="org.apache.log4j.PatternLayout">
+<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss,SSS} %r %-5p] %m [%c:%l:%L]\n" />
+</layout>
+<filter class="org.apache.log4j.varia.LevelRangeFilter">
+<param name="LevelMin" value="DEBUG" />
+<param name="LevelMax" value="INFO" />
+</filter>
+</appender>
+ 
+<!-- 信息日志 info、WARN -->
+<appender name="framework_info" class="org.apache.log4j.RollingFileAppender">
+<param name="File" value="./frameworkInfo.log" />
+<param name="Append" value="true" />
+<param name="encoding" value="UTF-8" />
+<param name="maxFileSize" value="20MB" />
+<param name="maxBackupIndex" value="5" />
+<layout class="org.apache.log4j.PatternLayout">
+<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %r] %m \n" />
+</layout>
+<filter class="org.apache.log4j.varia.LevelRangeFilter">
+<param name="LevelMin" value="INFO" />
+<param name="LevelMax" value="WARN" />
+</filter>
+</appender>
+ 
+<!-- 错误日志 error、FATAL-->
+<appender name="framework_error" class="org.apache.log4j.RollingFileAppender">
+<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+<param name="File" value="./frameworkError.log" />
+<param name="Append" value="true" />
+<param name="encoding" value="UTF-8" />
+<param name="maxFileSize" value="20MB" />
+<param name="maxBackupIndex" value="5" />
+<layout class="org.apache.log4j.PatternLayout">
+<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss,SSS} %r %-5p] %m [%c:%l:%L]\n" />
+</layout>
+<filter class="org.apache.log4j.varia.LevelRangeFilter">
+<param name="LevelMin" value="ERROR" />
+<param name="LevelMax" value="FATAL" />
+</filter>
+</appender>
+ 
+<!-- hibernate 增加appender处理hibernate 生成的SQL语句 -->
+<!-- <appender name="hibernate_console" class="org.apache.log4j.ConsoleAppender"> <param name="Target" value="System.out" /> <param name="ImmediateFlush" value="true" /> <layout class="org.apache.log4j.PatternLayout"> 
+<param name="ConversionPattern" value="%m\n" /> </layout> </appender> -->
+<appender name="HibernateLoggerMonitor" class="cn.innosoft.fw.biz.logging.biz.model.HibernateSQLLoggerMonitorAppender">
+<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+</appender>
+ 
+<!-- hibernate -->
+<logger name="org.hibernate.SQL">
+<level value="info" />
+<!-- <appender-ref ref="hibernate_console" /> -->
+<appender-ref ref="HibernateLoggerMonitor" />
+</logger>
+ 
+<root>
+<level value="info" />
+<appender-ref ref="framework_console" />
+<appender-ref ref="framework_debug" />  <!-- //干掉这个，debug日志就没了。。。 -->
+<appender-ref ref="framework_info" />
+<appender-ref ref="framework_error" />
+</root>
+ 
+<category name="org.hibernate">
+       <priority value="ERROR"/>
+    </category>
+    
+    <category name="net.sf.ehcache">
+       <priority value="ERROR"/>
+    </category> 
+ 
+</log4j:configuration>

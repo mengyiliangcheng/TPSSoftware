@@ -13,6 +13,7 @@ Page({
     },
   onReady: function () {
     // 页面渲染完成
+    console.log('test')
     this.setData({
       Goodsinfo: app.data.GoodsInfo,
       Goodsname: app.data.GoodsName
@@ -70,6 +71,7 @@ addnewgoods:function(){
           }, // 设置请求的 header
         success: function(res){
           // success
+          console.log('success')
           console.log(res.data)
            console.log(res.data.good[3].urls.length)
           that.data.Goodsurl.splice(0,that.data.Goodsurl.length)

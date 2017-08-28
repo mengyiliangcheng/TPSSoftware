@@ -4,7 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
       
 <hibernate-mapping>  
-    <class name="com.jxggdxw.www.dao.GoodModel" table="GoodModel">  
+    <class name="com.jxggdxw.www.domain.GoodModel" table="GoodModel" lazy="false">  
 
         <id name="id" type="java.lang.Integer">  
             <generator class="increment"/>  
@@ -13,7 +13,7 @@
         <property name="model" length="64" type="java.lang.String"/>
         <property name="info" length="64" type="java.lang.String"/>  
         	 	
-        <many-to-one name="good" class="com.jxggdxw.www.dao.Good" column="goodid"></many-to-one>       
+        <many-to-one name="good" class="com.jxggdxw.www.domain.Good" column="goodid" cascade="all" lazy="false"></many-to-one>       
         
     </class>  
 </hibernate-mapping>

@@ -44,8 +44,6 @@ private static final long serialVersionUID = 1L;
     
     	logger.error("doPost start ");
     	
-    	//Goods goods = new Goods();
-    	//goods.readGoods();
     	GoodDatabase db = new GoodDatabase();
     	
     	Good good = new Good();

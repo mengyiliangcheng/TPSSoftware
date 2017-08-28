@@ -6,8 +6,8 @@ var newgoodsname
 var goodsname
 var newgoodsprice
 var newgoodsabstract
-var uploadurl ='https://32906079.jxggdxw.com:8443/WeappServer/UploadGood'
-//var uploadurl ='http://localhost:8080/WeappServer/UploadGood'
+var uploadurl ='https://32906079.jxggdxw.com:8443/WeappServer/UploadService'
+//var uploadurl ='http://localhost:8080/WeappServer/UploadService'
 Page({
   data:{},
   newgoodsname:function(e){
@@ -31,9 +31,13 @@ addpicture:function(){
     success: function (res) {
     // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
       console.log(res.tempFilePaths.length)
-      wx.showLoading({
-          title: '上传中',
-        })
+     // wx.showLoading({
+     //     title: '上传中',
+     //   })
+      wx.showToast({
+        title: '当前点餐人数12人，已经符合配送要求',
+        duration:90000
+      })
       wx.uploadFile({    //上传第一张图片的同时上传图片信息
          url:uploadurl,  //开发者服务器URL
          filePath: res.tempFilePaths[0],  //上传文件的临时路径
@@ -77,8 +81,9 @@ addpicture:function(){
       })
     },
     complete:function(){
-      wx.showLoading({
-        title: '加载中',
+
+      wx.showToast({
+        title: 'toast',
       })
       setTimeout(function () {
         wx.hideLoading()

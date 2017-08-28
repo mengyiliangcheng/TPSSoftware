@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<configuration status="OFF">  
+    
+
+    
+    <!-- appender的配置信息 -->
+	<!-- 控制台 -->
+	<appender name="framework_console" class="org.apache.log4j.ConsoleAppender">
+	<param name="Target" value="System.out" />
+	<param name="ImmediateFlush" value="true" />
+	<layout class="org.apache.log4j.PatternLayout">
+	<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss,SSS} %r %-5p] %m [%c:%l:%L]\n" />
+	</layout>
+	<filter class="org.apache.log4j.varia.LevelRangeFilter">
+	<param name="LevelMin" value="INFO" />
+	<param name="LevelMax" value="ERROR" />
+	</filter>
+	</appender>
+	 
+	<!-- 详细日志 debug、INFO -->
+	<appender name="framework_debug" class="org.apache.log4j.RollingFileAppender">
+	<param name="File" value="e:/program/TPSSoftware/servers/java-servlet/WeappServer/log/test.log" />
+	<param name="Append" value="true" />
+	<param name="encoding" value="UTF-8" />
+	<param name="maxFileSize" value="20MB" />
+	<param name="maxBackupIndex" value="10" />
+	<layout class="org.apache.log4j.PatternLayout">
+	<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss,SSS} %r %-5p] %m [%c:%l:%L]\n" />
+	</layout>
+	<filter class="org.apache.log4j.varia.LevelRangeFilter">
+	<param name="LevelMin" value="DEBUG" />
+	<param name="LevelMax" value="INFO" />
+	</filter>
+	</appender>
+	 
+	<!-- 信息日志 info、WARN -->
+	<appender name="framework_info" class="org.apache.log4j.RollingFileAppender">
+	<param name="File" value="e:/program/TPSSoftware/servers/java-servlet/WeappServer/log/test.log" />
+	<param name="Append" value="true" />
+	<param name="encoding" value="UTF-8" />
+	<param name="maxFileSize" value="20MB" />
+	<param name="maxBackupIndex" value="5" />
+	<layout class="org.apache.log4j.PatternLayout">
+	<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss} %r] %m \n" />
+	</layout>
+	<filter class="org.apache.log4j.varia.LevelRangeFilter">
+	<param name="LevelMin" value="INFO" />
+	<param name="LevelMax" value="WARN" />
+	</filter>
+	</appender>
+	 
+	<!-- 错误日志 error、FATAL-->
+	<appender name="framework_error" class="org.apache.log4j.RollingFileAppender">
+	<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+	<param name="File" value="e:/program/TPSSoftware/servers/java-servlet/WeappServer/log/test.log" />
+	<param name="Append" value="true" />
+	<param name="encoding" value="UTF-8" />
+	<param name="maxFileSize" value="20MB" />
+	<param name="maxBackupIndex" value="5" />
+	<layout class="org.apache.log4j.PatternLayout">
+	<param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss,SSS} %r %-5p] %m [%c:%l:%L]\n" />
+	</layout>
+	<filter class="org.apache.log4j.varia.LevelRangeFilter">
+	<param name="LevelMin" value="ERROR" />
+	<param name="LevelMax" value="FATAL" />
+	</filter>
+	</appender>
+	
+	    <!-- hibernate 增加appender处理hibernate 生成的SQL语句 -->
+	<appender name="HibernateLoggerMonitor" class="cn.innosoft.fw.biz.logging.biz.model.HibernateSQLLoggerMonitorAppender">
+	<errorHandler class="org.apache.log4j.helpers.OnlyOnceErrorHandler" />
+    </appender>
+    
+
+  
+	  <!-- hibernate -->
+	<logger name="org.hibernate.SQL">
+	<level value="info" />
+	<!-- <appender-ref ref="hibernate_console" /> -->
+	<appender-ref ref="HibernateLoggerMonitor" />
+	</logger>
+  
+
+    <root>
+	<level value="info" />
+	<appender-ref ref="framework_console" />
+	<!-- <appender-ref ref="framework_debug" />   -->
+	<appender-ref ref="framework_info" />
+	<appender-ref ref="framework_error" />
+	</root> 
+	
+	<category name="org.hibernate">
+       <priority value="ERROR"/>
+    </category>
+    
+    <category name="net.sf.ehcache">
+       <priority value="ERROR"/>
+    </category> 
+
+</configuration>
