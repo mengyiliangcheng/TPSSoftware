@@ -1,0 +1,33 @@
+
+
+MainService:是小程序和后台数据交换的唯一接口
+不同的任务以关键字target区分，其中：
+target:download:用于后台给小程序下发数据接口
+target:upload：用于小程序给后台上传数据接口
+
+在download任务中，以不同的命令字来区分命令：
+1.getgoodsname得到所有商品的名称
+参数：
+	command:getgoodsname
+2.getgoodinfo得到一条商品的详细信息
+参数：
+	command:getgoodinfo
+	name:xxx
+3.getgoodsinfo得到所有商品的详细信息
+参数：
+	command:getgoodsinfo
+4.delgoodinfo删除指定商品详细信息,不同的商品名以英文逗号隔开
+参数：
+	command:delgoodinfo
+	name:xxx,xxx,xxx
+	
+在upload任务中，上传商品详细参数：
+参数：
+goodsname:xxx
+goodsprice:xxx
+goodsabstract:xxx
+以上数据都是通过URL编码过的
+	
+	
+	
+	
